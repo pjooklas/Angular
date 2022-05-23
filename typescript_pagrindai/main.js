@@ -28,3 +28,13 @@ var isv = function (kaina, antkainis) {
     console.log("Kainuos " + (kaina + antkainis) + " EUR");
 };
 isv(8, 9);
+var vardas;
+var pavarde;
+var jonas = {
+    vardas: "Jonas",
+    pavarde: "Jonaitis",
+    amzius: 30
+};
+jonas.pavarde = "NeJonaitis";
+console.log(jonas, jonas.pavarde);
+var imonesDarbuotojai;

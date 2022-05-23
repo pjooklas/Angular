@@ -36,3 +36,25 @@ let isv= (kaina:number, antkainis:number) =>{
 }
 
 isv(8,9);
+
+
+//type sukuria kintamojo tipa
+type Darbuotojas = {
+    vardas:string;
+    pavarde:string;
+    amzius:number;
+}
+
+let vardas:string;
+let pavarde:string;
+
+let jonas:Darbuotojas={
+    vardas: "Jonas",
+    pavarde: "Jonaitis",
+    amzius: 30
+};
+jonas.pavarde = "NeJonaitis";
+console.log(jonas, jonas.pavarde);
+
+
+let imonesDarbuotojai:Darbuotojas[];
