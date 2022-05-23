@@ -7,9 +7,9 @@ Išbandykite funkciją. Funkcijos kintamiesiems ir grąžinamoms reikšmėms nur
 var bdd = function (x, y) {
     var i = Math.min(x, y);
     while (!(x % i == 0 && y % i == 0)) {
-        i++;
+        i--;
     }
     return i;
 };
-console.log(bdd(21, 3));
-console.log(bdd(20, 5));
+console.log(bdd(21, 5)); //3
+console.log(bdd(20, 5)); //5
