@@ -5,12 +5,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>KMI app</title>
+
 </head>
 
 <body>
-
-</body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">KMI skaičiuoklė</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Įveskite svorį (kg.):</label>
+                            <input type="number" id="inSvoris" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Įveskite savo ūgį (cm.): </label>
+                            <input type="number" id="inUgis" class="form-control">
+                        </div>
+                        <button type="button" class="btn btn-success" id="btnKMI">Skaičiuoti KMI</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Jūsų informacija</div>
+                    <div class="card-body">
+                        Jūsų KMI: <span id="kmi"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </html>
