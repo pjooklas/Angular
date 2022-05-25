@@ -22,7 +22,7 @@ const rodytiPrekes=()=>{
 
             const btnTrinti=document.createElement("button");
             btnTrinti.textContent="Trinti";
-            btnTrinti.className="btn btn-danger float-end ml-3";
+            btnTrinti.className="btn btn-danger float-end";
             btnTrinti.onclick=()=>{
                 deletePirkinys(i);
             }
@@ -31,7 +31,7 @@ const rodytiPrekes=()=>{
             if (i!=0) {
                 const btnUp=document.createElement("button");
                 btnUp.textContent="Į viršų";
-                btnUp.className="btn btn-danger float-end ml-3";
+                btnUp.className="btn btn-secondary float-end ml-1";
                 btnUp.onclick=()=>{
                     upPirkinys(i);
                 }
@@ -44,7 +44,7 @@ const rodytiPrekes=()=>{
 };
 
 const upPirkinys=(index:number)=>{
-        index >= 0 ? pirkiniai.splice(index-1, 0, pirkiniai.splice(index, 1)[0]) : pirkiniai.splice(index-2, 0, pirkiniai.splice(index, 1)[0]);
+        pirkiniai.splice(index-1, 0, pirkiniai.splice(index, 1)[0]);
         savePirkiniai();
         rodytiPrekes();        
 }
