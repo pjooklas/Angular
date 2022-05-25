@@ -12,16 +12,30 @@ const rodytiPrekes = () => {
             const li = document.createElement("li");
             li.className = "list-group-item";
             li.textContent = pirkinys.preke + ' ' + pirkinys.kiekis;
-            const btn = document.createElement("button");
-            btn.textContent = "Trinti";
-            btn.className = "btn btn-danger float-end";
-            btn.onclick = () => {
+            const btnTrinti = document.createElement("button");
+            btnTrinti.textContent = "Trinti";
+            btnTrinti.className = "btn btn-danger float-end ml-3";
+            btnTrinti.onclick = () => {
                 deletePirkinys(i);
             };
-            li.appendChild(btn);
+            li.appendChild(btnTrinti);
+            if (i != 0) {
+                const btnUp = document.createElement("button");
+                btnUp.textContent = "Į viršų";
+                btnUp.className = "btn btn-danger float-end ml-3";
+                btnUp.onclick = () => {
+                    upPirkinys(i);
+                };
+                li.appendChild(btnUp);
+            }
             pirkiniuSarasas.appendChild(li);
         });
     }
+};
+const upPirkinys = (index) => {
+    index >= 0 ? pirkiniai.splice(index - 1, 0, pirkiniai.splice(index, 1)[0]) : pirkiniai.splice(index - 2, 0, pirkiniai.splice(index, 1)[0]);
+    savePirkiniai();
+    rodytiPrekes();
 };
 const deletePirkiniai = () => {
     localStorage.removeItem("pirkiniuSarasas");
