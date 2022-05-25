@@ -5,11 +5,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pirkiniu sarasas</title>
+    <title>Pirkiniu krepselis</title>
+    <script src="app.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
 <body>
-
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Itraukti i pirkiniu sarasa
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Prekes pavadinimas</label>
+                            <input type="text" id="prekesPavadinimas" class="form-control">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Prekes kiekis</label>
+                            <input type="number" id="prekesKiekis" class="form-control">
+                        </div>
+                        <button type="button" id="btnPrideti" class="btn btn-success">Pridėti pirkini</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Pirkiniu sąrašas</div>
+                    <div class="card-body">
+                        <ul id="pirkiniuSarasas" class="list-group mb-3">
+                        </ul>
+                        <button type="button" id="deletePirkiniai" class="btn btn-danger">Istrinti visus pirkinius</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
