@@ -12,33 +12,76 @@ class Darbuotojas {
         return this._vardas;
     }
     set pavarde(value) {
-        this.pavarde = value;
+        this._pavarde = value;
     }
     get pavarde() {
-        return this.pavarde;
+        return this._pavarde;
     }
     set atlyginimas(value) {
-        this.atlyginimas = value;
+        this._atlyginimas = value;
     }
     get atlyginimas() {
-        return this.atlyginimas;
+        return this._atlyginimas;
     }
-    gpm() {
+    get gpm() {
         return this._atlyginimas * 0.2;
     }
-    psd() {
+    get psd() {
         return this._atlyginimas * 0.0698;
     }
-    vsd() {
+    get vsd() {
         return this._atlyginimas * 0.1252;
     }
 }
-let d1 = new Darbuotojas("Algirdas", "Benaitis", 1000);
-let d2 = new Darbuotojas("Mykolas", "Maironis", 850);
-let d3 = new Darbuotojas("Juozas", "Brazauskas", 1200);
+const tableBody = document.getElementById("tableBody");
+const tableFooter = document.getElementById("tableFooter");
 let darbuotojai = [];
-darbuotojai.push(d1, d2, d3);
+const showDarbuotojai = () => {
+    let atlyginimuSuma = 0;
+    let gpmSuma = 0;
+    let psdSuma = 0;
+    let vsdSuma = 0;
+    darbuotojai.forEach((darbuotojas) => {
+        atlyginimuSuma += darbuotojas.atlyginimas;
+        gpmSuma += darbuotojas.gpm;
+        psdSuma += darbuotojas.psd;
+        vsdSuma += darbuotojas.vsd;
+        const tr = document.createElement("tr");
+        let td = document.createElement("td");
+        td.textContent = darbuotojas.vardas + " " + darbuotojas.pavarde;
+        tr.appendChild(td);
+        td = document.createElement("td");
+        td.textContent = darbuotojas.atlyginimas + " EUR";
+        tr.appendChild(td);
+        td = document.createElement("td");
+        td.textContent = darbuotojas.gpm + " EUR";
+        tr.appendChild(td);
+        td = document.createElement("td");
+        td.textContent = darbuotojas.psd + " EUR";
+        tr.appendChild(td);
+        td = document.createElement("td");
+        td.textContent = darbuotojas.vsd + " EUR";
+        tr.appendChild(td);
+        tableBody === null || tableBody === void 0 ? void 0 : tableBody.appendChild(tr);
+    });
+    let td = document.createElement("td");
+    td.innerHTML = `Viso darbuotoju: <span class="fw-bold">${darbuotojai.length}</span>`;
+    tableFooter === null || tableFooter === void 0 ? void 0 : tableFooter.appendChild(td);
+    td = document.createElement("td");
+    td.innerHTML = atlyginimuSuma + " EUR";
+    tableFooter === null || tableFooter === void 0 ? void 0 : tableFooter.appendChild(td);
+    td = document.createElement("td");
+    td.innerHTML = gpmSuma + " EUR";
+    tableFooter === null || tableFooter === void 0 ? void 0 : tableFooter.appendChild(td);
+    td = document.createElement("td");
+    td.innerHTML = psdSuma + " EUR";
+    tableFooter === null || tableFooter === void 0 ? void 0 : tableFooter.appendChild(td);
+    td = document.createElement("td");
+    td.innerHTML = vsdSuma + " EUR";
+    tableFooter === null || tableFooter === void 0 ? void 0 : tableFooter.appendChild(td);
+};
+darbuotojai.push(new Darbuotojas("Algirdas", "Benaitis", 1000));
+darbuotojai.push(new Darbuotojas("Mykolas", "Maironis", 850));
+darbuotojai.push(new Darbuotojas("Juozas", "Brazauskas", 1200));
 console.log(darbuotojai);
-console.log(d1.gpm());
-console.log(d1.psd());
-console.log(d1.vsd());
+showDarbuotojai();
