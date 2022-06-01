@@ -35,8 +35,14 @@ class Darbuotojas {
 }
 const tableBody = document.getElementById("tableBody");
 const tableFooter = document.getElementById("tableFooter");
+const inputVardas = document.getElementById("inputVardas");
+const inputPavarde = document.getElementById("inputPavarde");
+const inputAtlyginimas = document.getElementById("inputAtlyginimas");
+const buttonPrideti = document.getElementById("buttonPrideti");
 let darbuotojai = [];
 const showDarbuotojai = () => {
+    if (tableBody != null)
+        tableBody.innerHTML = "";
     let atlyginimuSuma = 0;
     let gpmSuma = 0;
     let psdSuma = 0;
@@ -64,6 +70,8 @@ const showDarbuotojai = () => {
         tr.appendChild(td);
         tableBody === null || tableBody === void 0 ? void 0 : tableBody.appendChild(tr);
     });
+    if (tableFooter != null)
+        tableFooter.innerHTML = "";
     let td = document.createElement("td");
     td.innerHTML = `Viso darbuotoju: <span class="fw-bold">${darbuotojai.length}</span>`;
     tableFooter === null || tableFooter === void 0 ? void 0 : tableFooter.appendChild(td);
@@ -80,8 +88,28 @@ const showDarbuotojai = () => {
     td.innerHTML = vsdSuma + " EUR";
     tableFooter === null || tableFooter === void 0 ? void 0 : tableFooter.appendChild(td);
 };
-darbuotojai.push(new Darbuotojas("Algirdas", "Benaitis", 1000));
-darbuotojai.push(new Darbuotojas("Mykolas", "Maironis", 850));
-darbuotojai.push(new Darbuotojas("Juozas", "Brazauskas", 1200));
-console.log(darbuotojai);
+const pridetiPreke = () => {
+    if (inputVardas != null && inputPavarde != null && inputAtlyginimas != null) {
+        darbuotojai.push(new Darbuotojas(inputVardas.value, inputPavarde.value, inputAtlyginimas.valueAsNumber));
+        localStorage.setItem("darbuotojai", JSON.stringify(darbuotojai));
+        inputVardas.value = "";
+        inputPavarde.value = "";
+        inputAtlyginimas.value = "";
+        showDarbuotojai();
+    }
+};
+const uzkrautiDarbuotojus = () => {
+    let jsonString = localStorage.getItem("darbuotojai");
+    if (jsonString != null) {
+        let data = JSON.parse(jsonString);
+        data.forEach((d) => {
+            darbuotojai.push(new Darbuotojas(d._vardas, d._pavarde, d._atlyginimas));
+        });
+        console.log(darbuotojai);
+    }
+};
+uzkrautiDarbuotojus();
 showDarbuotojai();
+if (buttonPrideti != null) {
+    buttonPrideti.onclick = pridetiPreke;
+}
