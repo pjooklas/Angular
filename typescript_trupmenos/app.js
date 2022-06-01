@@ -54,6 +54,9 @@ class Trupmena {
     print() {
         console.log(this.sveikojiDalis + " " + this.skaitiklis + "/" + this.daliklis);
     }
+    toString() {
+        console.log(this.sveikojiDalis + " " + this.skaitiklis + "/" + this.daliklis);
+    }
     toDouble() {
         return this.sveikojiDalis + this.skaitiklis / this.daliklis;
     }
@@ -88,10 +91,56 @@ class Trupmena {
         return this.sveikojiDalis;
     }
 }
-let t1 = new Trupmena(1, 2, 3);
+class Veiksmas {
+    constructor(_t1, _v, _t2) {
+        this._t1 = _t1;
+        this._v = _v;
+        this._t2 = _t2;
+    }
+    get t1() {
+        return this._t1;
+    }
+    set t1(value) {
+        this._t1 = value;
+    }
+    get t2() {
+        return this._t2;
+    }
+    set t2(value) {
+        this._t2 = value;
+    }
+    get v() {
+        return this._v;
+    }
+    set v(value) {
+        this._v = value;
+    }
+    toString() {
+        return this._t1.toString() + " " + this._v + " " + this._t2.toString();
+    }
+    skaiciuoti() {
+        switch (this._v) {
+            case "+":
+                return this._t1.toDouble() + this._t2.toDouble();
+                break;
+            case "-":
+                return this._t1.toDouble() - this._t2.toDouble();
+                break;
+            case "*":
+                return this._t1.toDouble() - this._t2.toDouble();
+                break;
+            case "/":
+                return this._t1.toDouble() - this._t2.toDouble();
+                break;
+        }
+        return 0;
+    }
+}
+let t1 = new Trupmena(1, 1, 3);
 t1.print();
 let t2 = new Trupmena(2, 1, 3);
 t2.print();
-t1.pridetiTrupmena(t2);
-t1.print();
-console.log(t1.toDouble());
+let v = new Veiksmas(t1, "+", t2);
+let v2 = new Veiksmas(new Trupmena(1, 1, 2), "-", new Trupmena(1, 1, 3));
+console.log(v.toString());
+console.log(v2.skaiciuoti());

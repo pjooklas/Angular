@@ -60,6 +60,10 @@ class Trupmena{
         console.log(this.sveikojiDalis+" "+ this.skaitiklis + "/" + this.daliklis);
     }
 
+    public toString(){
+        console.log(this.sveikojiDalis+" "+ this.skaitiklis + "/" + this.daliklis);
+    }
+
     public toDouble(){
         return this.sveikojiDalis+this.skaitiklis/this.daliklis;
     }
@@ -100,17 +104,72 @@ class Trupmena{
    get SveikojiDalis():number{
     return this.sveikojiDalis;
 }
-   
+}
+
+
+class Veiksmas{
+    constructor(private _t1:Trupmena, private _v: string, private _t2:Trupmena){
+
+    }
+
+    get t1(){
+        return this._t1;
+    }
+
+    set t1(value: Trupmena){
+        this._t1=value;
+    }
+    
+    get t2(){
+        return this._t2;
+    }
+
+    set t2(value: Trupmena){
+        this._t2=value;
+    }
+
+    get v(){
+        return this._v;
+    }
+
+    set v(value: string){
+        this._v=value;
+    }
+
+    public toString(){
+        return this._t1.toString()+" "+this._v+" "+this._t2.toString();
+    }
+
+    public skaiciuoti():number{
+        switch (this._v) {
+            case "+":
+                return this._t1.toDouble()+this._t2.toDouble();                
+                break;
+            case "-":
+                return this._t1.toDouble()-this._t2.toDouble();                
+                break;
+            case "*":
+                return this._t1.toDouble()-this._t2.toDouble();                
+                break;
+            case "/":
+                return this._t1.toDouble()-this._t2.toDouble();                
+                break;       
+        }
+        return 0;
+    }
 
 }
 
-let t1:Trupmena= new Trupmena(1,2,3);
+let t1:Trupmena= new Trupmena(1, 1, 3);
 t1.print();
 
 let t2:Trupmena = new Trupmena(2, 1, 3);
 t2.print();
 
-t1.pridetiTrupmena(t2);
-t1.print();
+let v:Veiksmas = new Veiksmas(t1, "+", t2);
+let v2:Veiksmas = new Veiksmas(new Trupmena(1,1,2), "-", new Trupmena(1,1,3));
 
-console.log(t1.toDouble());
+console.log(v.toString());
+console.log(v2.skaiciuoti());
+
+
