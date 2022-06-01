@@ -61,7 +61,7 @@ class Trupmena{
     }
 
     public toString(){
-        console.log(this.sveikojiDalis+" "+ this.skaitiklis + "/" + this.daliklis);
+        return this.sveikojiDalis+" "+ this.skaitiklis + "/" + this.daliklis;
     }
 
     public toDouble(){

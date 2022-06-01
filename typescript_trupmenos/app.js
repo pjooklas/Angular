@@ -55,7 +55,7 @@ class Trupmena {
         console.log(this.sveikojiDalis + " " + this.skaitiklis + "/" + this.daliklis);
     }
     toString() {
-        console.log(this.sveikojiDalis + " " + this.skaitiklis + "/" + this.daliklis);
+        return this.sveikojiDalis + " " + this.skaitiklis + "/" + this.daliklis;
     }
     toDouble() {
         return this.sveikojiDalis + this.skaitiklis / this.daliklis;
