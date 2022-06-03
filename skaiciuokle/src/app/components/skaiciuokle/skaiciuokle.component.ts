@@ -7,18 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SkaiciuokleComponent implements OnInit {
 
-  public ugis:number|null=0;
-  public svoris:number|null=0;
+  public ugis:number|null=null;
+  public svoris:number|null=null;
   public kmi:number=0;
-  
+  public kmiTekstu:string="";
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  public skaiciuotiKMI() {
-    if (this.svoris!=0 && this.ugis!=0 && this.svoris!=null && this.ugis!=null) {
-            this.kmi=+(this.svoris/((this.ugis/100)**2)).toFixed(2);
+  public skaiciuotiKMI(){
+    console.log(this.ugis);
+    if (this.svoris!=0 && this.ugis!=null  && this.svoris!=null && this.ugis!=0){
+      this.kmi=Number((this.svoris/((this.ugis/100)**2)).toFixed(2));
+      if (this.kmi<25) this.kmiTekstu="Sveikiname!! Jūsų svoris normalus";
+      if (this.kmi>=25 && this.kmi<30) this.kmiTekstu="Jūs turite antsvorio";
+      if (this.kmi>30) this.kmiTekstu="Jūs turite viršsvorio";
     }
   }
 

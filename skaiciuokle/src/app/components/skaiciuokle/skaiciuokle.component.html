@@ -6,15 +6,13 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="" class="form-label">Ūgis: </label>
-                        <input type="number" class="form-control" [(ngModel)]="ugis" />
+                        <input type="number" class="form-control" [(ngModel)]="ugis">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Svoris: </label>
-                        <input type="number" class="form-control" [(ngModel)]="svoris" />
+                        <input type="number" class="form-control" [(ngModel)]="svoris">
                     </div>
-                    <button class="btn btn-success" (click)="skaiciuotiKMI()" [disabled]="svoris==0 || ugis==0 || svoris==null || ugis==null">
-            Skaičiuoti KMI
-          </button>
+                    <button class="btn btn-success" (click)="skaiciuotiKMI()" [disabled]="svoris==0 || ugis==0 || ugis==null || svoris==null">Skaičiuoti KMI</button>
                 </div>
             </div>
         </div>
@@ -23,8 +21,15 @@
                 <div class="card-header">KMI rezultatai</div>
                 <div class="card-body">
 
-                    <div *ngIf="kmi!=0">Jūsų KMI: <strong>{{ kmi }}</strong></div>
-                    <div *ngIf="kmi==0">Iveskite duomenis ir paspauskite skaiciuoti</div>
+                    <div class="alert" *ngIf="kmi!=0" [ngClass]="{
+                        'alert-success':kmi<25,
+                        'alert-warning':kmi>=25 && kmi<30,
+                        'alert-danger':kmi>=30
+                    }">
+                        Jūsų KMI: <strong>{{ kmi }}</strong> <br> {{ kmiTekstu }}
+                        <i class="fa-brands fa-twitter"></i>
+                    </div>
+                    <div *ngIf="kmi==0">Įveskite duomenis ir paspauskite skaičiuoti</div>
 
                 </div>
             </div>
