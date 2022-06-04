@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Iveskite duomenis</div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="" class="form-control">Rezervuaro talpa (l): </label>
+                        <input type="number" class="form-control" [(ngModel)]="talpa">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-control">Rezervuaro pildymo greitis (l/val.): </label>
+                        <input type="number" class="form-control" [(ngModel)]="greitis">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-control">Kiek laiko pildyti rezervuara (val.): </label>
+                        <input type="number" class="form-control" [(ngModel)]="laikas">
+                    </div>
+                    <button class="btn btn-success" (click)="skaiciuotiUzpildyma()">Skaičiuoti</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Rezervuaro uzpildymas</div>
+                <div class="card-body">
+
+                    <div class="alert" *ngIf="uzpildymas!=0" [ngClass]="{
+                        'alert-success':uzpildymas<80,
+                        'alert-warning':uzpildymas>=80 && uzpildymas<=100,
+                        'alert-danger':uzpildymas>100
+                    }">
+                        Rezervuaras uzpildytas: <strong>{{ uzpildymas }}%</strong> <br> {{ uzpildymasTekstu }}
+                    </div>
+                    <div *ngIf="uzpildymas==0">Įveskite duomenis ir paspauskite skaičiuoti</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
