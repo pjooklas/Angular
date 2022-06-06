@@ -32,6 +32,12 @@
                     }">
                         Rezervuaras uzpildytas: <strong>{{ uzpildymas }}%</strong> <br> {{ uzpildymasTekstu }}
                     </div>
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{'width': uzpildymas + '%' }" [ngClass]="{
+                            'bg-success':uzpildymas<80,
+                            'bg-warning':uzpildymas>=80 && uzpildymas<=100,
+                            'bg-danger':uzpildymas>100}" aria-valuenow="uzpildymas + '%'" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                     <div *ngIf="uzpildymas==0">Įveskite duomenis ir paspauskite skaičiuoti</div>
                 </div>
             </div>

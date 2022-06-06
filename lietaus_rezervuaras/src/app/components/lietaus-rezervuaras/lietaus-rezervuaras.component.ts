@@ -24,7 +24,7 @@ export class LietausRezervuarasComponent implements OnInit {
         this.laikas!=0 && this.laikas!=null) {
       this.uzpildymas=+(((this.greitis*this.laikas/this.talpa)*100).toFixed(2));
       if (this.uzpildymas<80) this.uzpildymasTekstu="Rezervuara dar galima pildyti";
-      if (this.uzpildymas>=80 && this.uzpildymas<=100) this.uzpildymasTekstu="Rezervuaras kritiskai uzpildytas";
+      if (this.uzpildymas>=80 && this.uzpildymas<=100) this.uzpildymasTekstu="Rezervuaras  kritiskai uzpildytas";
       if (this.uzpildymas>100) this.uzpildymasTekstu="Rezervuaras perpildytas";
     }
   }
