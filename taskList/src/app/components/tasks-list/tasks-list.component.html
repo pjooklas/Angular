@@ -1,0 +1,6 @@
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let task of tasks; let n=index">
+        <b>{{ n+1 }}. {{ task.taskText }}</b>, užduoties skubumas: {{ task.taskType}}.
+    </li>
+
+</ul>
