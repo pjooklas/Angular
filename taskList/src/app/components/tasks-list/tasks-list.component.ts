@@ -18,4 +18,8 @@ export class TasksListComponent implements OnInit {
     this.tasks=this.tasksService.tasks;
   }
 
+  public deleteTask(n:number){
+    this.tasksService.deleteTask(n);
+  }
+
 }

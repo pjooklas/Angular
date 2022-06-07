@@ -8,12 +8,26 @@ export class TasksService {
   public tasks:Task[]=[];
 
   constructor() { 
-    this.tasks.push(new Task("Išnešti šiukšles", "Rutininis"));
-    this.tasks.push(new Task("Išvalyti kambarius", "Rutininis"));
-    this.tasks.push(new Task("Nupirkti kačių maisto", "Skubus"));
   }
 
   public addTask(taskName: string, taskType:string){
     this.tasks.push(new Task(taskName, taskType));
+    this.saveTasks();
+  }
+
+  public deleteTask(n:number){
+    this.tasks.splice(n, 1);
+    this.saveTasks();
+  }
+
+  public loadTasks(){
+    let data =  localStorage.getItem("tasks");
+    if (data!=null) {
+      this.tasks = JSON.parse(data);
+    }
+  }
+
+  public saveTasks(){
+    localStorage.setItem("tasks", JSON.stringify(this.tasks));
   }
 }

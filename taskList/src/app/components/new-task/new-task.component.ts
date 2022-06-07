@@ -11,7 +11,7 @@ export class NewTaskComponent implements OnInit {
   public taskName:string="";
   public taskType:string="";
 
-  constructor(private tasksService:TasksService) { }
+  constructor(private tasksService: TasksService) { }
 
   ngOnInit(): void {
   }
