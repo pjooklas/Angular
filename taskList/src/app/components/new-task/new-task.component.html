@@ -1,0 +1,14 @@
+<div class="mb-3">
+    <label for="" class="form-label">Užduoties pavadinimas</label>
+    <input type="text" class="form-control" [(ngModel)]="taskName">
+</div>
+<div class="mb-3">
+    <label for="" class="form-label">Užduoties tipas</label>
+    <select class="form-select" [(ngModel)]="taskType">
+        <option value="Rutininis" >Rutininis</option>
+        <option value="Neskubus">Neskubus</option>
+        <option value="Skubus">Skubus</option>
+        <option value="Ypač skubus">Ypač skubus</option>
+      </select>
+</div>
+<button class="btn btn-success" (click)="addTask()">Pridėti užduotį</button>
