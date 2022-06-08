@@ -6,17 +6,27 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { NewProductComponent } from './components/new-product/new-product.component';
 import { FormsModule } from '@angular/forms';
 import { ProductsStatisticsComponent } from './components/products-statistics/products-statistics.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes:Routes=[
+  {path:'', component:ProductListComponent},
+  {path:'new', component:NewProductComponent}
+]
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     NewProductComponent,
-    ProductsStatisticsComponent
+    ProductsStatisticsComponent,
+    NavigationComponent
   ],
   imports: [
     FormsModule,
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

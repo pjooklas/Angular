@@ -1,7 +1,14 @@
-<ul class="list-group">
-    <li class="list-group-item" *ngFor="let product of products; let n=index">
-        <b>{{ n+1 }}. {{ product.name }}</b>, užsakomas kiekis: {{ product.quantity}} vnt.
-        <button class="btn btn-primary float-end" (click)="deleteProduct(n)">Prekė nupirkta</button>
-    </li>
+<div class="card">
+    <div class="card-header">Prekių sąrašas</div>
+    <div class="card-body">
 
-</ul>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let product of products; let n=index">
+                <b>{{ n+1 }}. {{ product.name }}</b>, užsakomas kiekis: {{ product.quantity}} vnt.
+                <button class="btn btn-primary float-end" (click)="deleteProduct(n)">Prekė nupirkta</button>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<app-products-statistics></app-products-statistics>

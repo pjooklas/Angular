@@ -1,24 +1,8 @@
 <div class="container">
+    <app-navigation></app-navigation>
     <div class="row mt-5">
-
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Prekių sąrašas</div>
-                <div class="card-body">
-                    <app-product-list></app-product-list>
-                </div>
-            </div>
+        <div class="col-md-12">
+            <router-outlet></router-outlet>
         </div>
-        <app-products-statistics></app-products-statistics>
-
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Prideti nauja preke</div>
-                <div class="card-body">
-                    <app-new-product></app-new-product>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
