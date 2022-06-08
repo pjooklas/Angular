@@ -1,7 +1,14 @@
-<ul class="list-group">
-    <li class="list-group-item" *ngFor="let task of tasks; let n=index">
-        <b>{{ n+1 }}. {{ task.taskText }}</b>, užduoties skubumas: {{ task.taskType}}.
-        <button class="btn btn-primary float-end" (click)="deleteTask(n)">Užduotis padaryta</button>
-    </li>
+<div class="card">
+    <div class="card-header">Užduočių sąrašas</div>
+    <div class="card-body">
 
-</ul>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let task of tasks; let n=index">
+                <b>{{ n+1 }}. {{ task.taskText }}</b>, užduoties skubumas: {{ task.taskType}}.
+                <button class="btn btn-primary float-end" (click)="deleteTask(n)">Užduotis padaryta</button>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<!-- <app-products-statistics></app-products-statistics> -->
