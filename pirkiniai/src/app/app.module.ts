@@ -8,10 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { ProductsStatisticsComponent } from './components/products-statistics/products-statistics.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { RouterModule, Routes } from '@angular/router';
+import { UpdateProductComponent } from './components/update-product/update-product.component';
 
 const appRoutes:Routes=[
   {path:'', component:ProductListComponent},
-  {path:'new', component:NewProductComponent}
+  {path:'new', component:NewProductComponent},
+  {path:'update/:index', component:UpdateProductComponent},
 ]
 
 
@@ -21,7 +23,8 @@ const appRoutes:Routes=[
     ProductListComponent,
     NewProductComponent,
     ProductsStatisticsComponent,
-    NavigationComponent
+    NavigationComponent,
+    UpdateProductComponent
   ],
   imports: [
     FormsModule,

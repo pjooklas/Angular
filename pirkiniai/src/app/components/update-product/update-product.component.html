@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="card-header">Prekes redagavimas</div>
+    <div class="card-body">
+        <div class="mb-3">
+            <label for="" class="form-label">Prekės pavadinimas</label>
+            <input type="text" class="form-control" [(ngModel)]="name">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Kiekis</label>
+            <input type="number" class="form-control" [(ngModel)]="quantity">
+        </div>
+        <button class="btn btn-success" (click)="updateProduct()">Atnaujinti prekę</button>
+    </div>
+</div>

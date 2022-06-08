@@ -35,4 +35,10 @@ export class ProductsService {
   public saveProducts(){
       localStorage.setItem("products", JSON.stringify(this.products));
   }
+
+  public updateProduct(index:number, name:string, quantity:number){
+    this.products[index].name=name;
+    this.products[index].quantity=quantity;
+    this.saveProducts();
+  }
 }

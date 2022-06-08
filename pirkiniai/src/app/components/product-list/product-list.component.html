@@ -6,6 +6,7 @@
             <li class="list-group-item" *ngFor="let product of products; let n=index">
                 <b>{{ n+1 }}. {{ product.name }}</b>, užsakomas kiekis: {{ product.quantity}} vnt.
                 <button class="btn btn-primary float-end" (click)="deleteProduct(n)">Prekė nupirkta</button>
+                <a [routerLink]="['update', n]" class="btn btn-success float-end me-2">Redaguoti preke</a>
             </li>
 
         </ul>
