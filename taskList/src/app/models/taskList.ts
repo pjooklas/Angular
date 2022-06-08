@@ -1,7 +1,7 @@
 export class Task{   
 
     constructor (
-        public taskText:string, 
+        public taskName:string, 
         public taskType:string){
     }
 }

@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-header">Redguoti užduotį</div>
+    <div class="card-body">
+        <div class="mb-3">
+            <label for="" class="form-label">Užduoties pavadinimas</label>
+            <input type="text" class="form-control" [(ngModel)]="taskName">
+        </div>
+        <div class="mb-3">
+            <label for="task-type-select" class="form-label">Užduoties tipas</label>
+            <select class="form-select" aria-label=".form-select-lg example" [(ngModel)]="taskType">
+        <option selected>Pasirinkite užduoties tipą</option>
+        <option value="Rutininis" >Rutininis</option>
+        <option value="Neskubus">Neskubus</option>
+        <option value="Skubus">Skubus</option>
+        <option value="Ypač skubus">Ypač skubus</option>
+      </select>
+        </div>
+        <button class="btn btn-success" (click)="updateTask()">Atnaujinti užduotį</button>
+    </div>
+</div>
