@@ -4,9 +4,9 @@
 
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let task of tasks; let n=index">
-                <b>{{ n+1 }}. {{ task.taskName }}</b>, užduoties skubumas: {{ task.taskType}}.
-                <button class="btn btn-primary float-end" (click)="deleteTask(n)">Užduotis padaryta</button>
-                <a [routerLink]="['update', n]" class="btn btn-info float-end me-2">Redaguoti uŽduotį</a>
+
+                <app-task-item [task]="task" [index]="n" (taskDelete)="deleteTask($event)"></app-task-item>
+
             </li>
 
         </ul>
