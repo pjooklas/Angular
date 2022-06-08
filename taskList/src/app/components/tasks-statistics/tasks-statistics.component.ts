@@ -13,10 +13,16 @@ export class TasksStatisticsComponent implements OnInit {
   constructor(private tasksService: TasksService) { }
 
   ngOnInit(): void {
+    this.calculateStatistics(); 
+
+   this.tasksService.onTasksChange.subscribe(()=>{
+     this.calculateStatistics(); 
+   })
   }
 
   public calculateStatistics() {
     this.taskCount=this.tasksService.tasks.length;
+
 
     // this.tasksService.tasks.forEach((tsk)=>{
       
