@@ -1,8 +1,20 @@
 <div class="card">
     <div class="dar-body">
-        <h4>Exchange currency:</h4>
-        <div>
-            {{ exchange?.amount }} {{exchange?.base }} = {{ exchange?.rates?.USD}} USD
+
+        <div *ngIf="!loading && !error">
+            <h4>Exchange currency:</h4>
+            <div>
+                {{ exchange?.amount }} {{exchange?.base }} = {{ exchange?.rates?.USD}} USD
+            </div>
         </div>
+
+        <div *ngIf="loading && !error" class="alert alert-info">
+            Content is loading...
+        </div>
+
+        <div *ngIf="error" class="alert alert-danger">
+            Error...
+        </div>
+
     </div>
 </div>

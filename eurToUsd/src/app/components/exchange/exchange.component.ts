@@ -10,6 +10,8 @@ import { ExchangeService } from 'src/app/services/exchange.service';
 export class ExchangeComponent implements OnInit {
 
   public exchange:Exchange|null=null;
+  public loading=true;
+  public error=false;
 
   constructor(
     private exchangeService:ExchangeService
@@ -20,10 +22,17 @@ export class ExchangeComponent implements OnInit {
   }
 
   public exchangeCurrency(){
-    this.exchangeService.makeExchange().subscribe((result)=>{
-      this.exchange=result;     
-    })
+    this.loading=true;
+    this.exchangeService.makeExchange().subscribe({
+      next:(result)=>{
+        this.exchange=result;  
+        this.loading=false;   
+      },
+      error:(error)=>{
+        console.log(error.status);
+        this.error=true; 
+      }
+    });
   }
-
 
 }
