@@ -5,5 +5,5 @@ export interface Rates{
 export interface Exchange{
     amount:number;
     base: string;
-    rates:Rates;
+    rates: Rates;
 }

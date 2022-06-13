@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Exchange } from 'src/app/models/exchange';
+import { Exchange, Rates } from 'src/app/models/exchange';
 import { ExchangeService } from 'src/app/services/exchange.service';
 
 @Component({
@@ -9,23 +9,29 @@ import { ExchangeService } from 'src/app/services/exchange.service';
 })
 export class ExchangeComponent implements OnInit {
 
-  public exchange:Exchange|null=null;
+  public exchange:string="";
+  public result:string="";
   public loading=true;
   public error=false;
+  public currencyArray:string[]=[];
+  public currencyFROM:string="";
+  public currencyTO:string="";
+  public amount:number=0;
 
   constructor(
     private exchangeService:ExchangeService
   ) { }
 
   ngOnInit(): void {
-    this.exchangeCurrency();
+    this.getCurrencies();
   }
 
   public exchangeCurrency(){
     this.loading=true;
-    this.exchangeService.makeExchange().subscribe({
-      next:(result)=>{
-        this.exchange=result;  
+    this.exchangeService.makeExchange(this.currencyFROM, this.currencyTO, this.amount).subscribe({
+      next:(result)=>{   
+        this.exchange=Number(result.rates[this.currencyTO]).toFixed(2);
+        this.result=`${this.amount} ${this.currencyFROM} = ${this.exchange}`;
         this.loading=false;   
       },
       error:(error)=>{
@@ -35,4 +41,18 @@ export class ExchangeComponent implements OnInit {
     });
   }
 
+    public getCurrencies(){
+      this.exchangeService.getCurrencies().subscribe({
+        next:(result)=>{
+          this.currencyArray = Object.keys(result);        
+          this.loading=false;   
+        },
+        error:(error)=>{
+          console.log(error.status);
+          this.error=true; 
+        }
+      });
+    }
+
 }
+

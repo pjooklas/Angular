@@ -11,10 +11,18 @@ export class ExchangeService {
     private http:HttpClient
   ) { }
 
-    public makeExchange(){
-      return this.http.get<Exchange>('https://api.frankfurter.app/latest?from=EUR&to=USD');
+    public makeExchange(from: string, to:string, amount:number){
+      return this.http.get<Exchange>('https://api.frankfurter.app/latest', {
+        params:{
+          amount: amount,
+          from: from,
+          to: to
+        }
+      });
     }
 
-
+    public getCurrencies() {
+      return this.http.get(`https://api.frankfurter.app/currencies`);
+    }
 
 }
