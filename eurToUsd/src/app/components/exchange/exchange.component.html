@@ -27,6 +27,7 @@
             <div *ngIf="!loading && !error" class="alert alert-info">
                 <h4>Result</h4>
                 <p>{{ result }}</p>
+                <button class="btn btn-success mb-3" (click)="clear()">Clear</button>
             </div>
           
         </div>

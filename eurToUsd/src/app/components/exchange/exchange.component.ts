@@ -48,7 +48,6 @@ export class ExchangeComponent implements OnInit {
             this.currencyArray.push({
               code:key,
               title:value
-
             });
           });
             
@@ -60,6 +59,13 @@ export class ExchangeComponent implements OnInit {
         }
       });
     }
+
+   public clear(){
+    this.result = '';
+    this.currencyFROM= '';
+    this.currencyTO= '';
+    this.amount = 0;
+   } 
 
 }
 
