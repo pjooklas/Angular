@@ -6,19 +6,19 @@
             <div class="mb-3">
                 <label class="form-label">FROM:</label>
                 <select class="form-control" [(ngModel)]="currencyFROM" >
-                    <option *ngFor="let currency of currencyArray" [value]="currency">{{ currency }}</option>
+                    <option *ngFor="let currency of currencyArray" [value]="currency.code">{{ currency.code }} {{ currency.title }}</option>
                 </select>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">TO:</label>
                 <select class="form-control" [(ngModel)]="currencyTO" >
-                    <option *ngFor="let currency of currencyArray" [value]="currency">{{ currency }}</option>
+                    <option *ngFor="let currency of currencyArray" [value]="currency.code">{{ currency.code }} {{ currency.title }}</option>
                 </select>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">TO:</label>
+                <label class="form-label">AMOUNT:</label>
                 <input type="number" class="form-control" [(ngModel)]="amount" />
             </div>
 

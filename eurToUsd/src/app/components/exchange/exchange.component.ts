@@ -13,7 +13,7 @@ export class ExchangeComponent implements OnInit {
   public result:string="";
   public loading=true;
   public error=false;
-  public currencyArray:string[]=[];
+  public currencyArray:{code:string,title:string}[]=[];
   public currencyFROM:string="";
   public currencyTO:string="";
   public amount:number=0;
@@ -31,7 +31,7 @@ export class ExchangeComponent implements OnInit {
     this.exchangeService.makeExchange(this.currencyFROM, this.currencyTO, this.amount).subscribe({
       next:(result)=>{   
         this.exchange=Number(result.rates[this.currencyTO]).toFixed(2);
-        this.result=`${this.amount} ${this.currencyFROM} = ${this.exchange}`;
+        this.result=`${this.amount} ${this.currencyFROM} = ${this.exchange} ${this.currencyTO}`;
         this.loading=false;   
       },
       error:(error)=>{
@@ -44,7 +44,14 @@ export class ExchangeComponent implements OnInit {
     public getCurrencies(){
       this.exchangeService.getCurrencies().subscribe({
         next:(result)=>{
-          this.currencyArray = Object.keys(result);        
+          Object.entries(result).forEach(([key,value])=>{
+            this.currencyArray.push({
+              code:key,
+              title:value
+
+            });
+          });
+            
           this.loading=false;   
         },
         error:(error)=>{

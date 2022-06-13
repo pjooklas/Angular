@@ -22,7 +22,7 @@ export class ExchangeService {
     }
 
     public getCurrencies() {
-      return this.http.get(`https://api.frankfurter.app/currencies`);
+      return this.http.get<{[key:string]:string}>(`https://api.frankfurter.app/currencies`);
     }
 
 }
