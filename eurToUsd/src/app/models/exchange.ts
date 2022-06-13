@@ -1,5 +1,5 @@
 export interface Rates{
-    USD:number;
+    [key:string]:number;
 }
 
 export interface Exchange{
