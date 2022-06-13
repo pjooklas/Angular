@@ -15,4 +15,6 @@ export class ExchangeService {
       return this.http.get<Exchange>('https://api.frankfurter.app/latest?from=EUR&to=USD');
     }
 
+
+
 }
