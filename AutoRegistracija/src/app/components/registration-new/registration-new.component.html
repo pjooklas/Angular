@@ -1,0 +1,31 @@
+
+<div class="card">
+    <div class="card-header">Registruoti automobilį</div>
+    <div class="card-body">
+        <form (ngSubmit)="registrationSubmit(forma)" #forma="ngForm">
+            <div class="mb-3">
+                <label class="form-label">Markė</label>
+                <input type="text" class="form-control" placeholder="Volvo" ngModel name="mark" required minlength="2" maxlength="16">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Modelis</label>
+                <input type="text" class="form-control" placeholder="V70" ngModel name="model" required minlength="2" maxlength="16">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Gamybos metai</label>
+                <input type="number" class="form-control" placeholder="Nuo 1970 m. iki 2022 m." ngModel name="year" required min="1970" max="2022" #inputYear="ngModel">
+                <span class="help-block" *ngIf="!inputYear.valid && inputYear.touched">Automobilio gamybos metai turi būti nuo 1970 m. iki 2022 m. </span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Registracijos numeris</label>
+                <input type="text" class="form-control" placeholder="AAA111" ngModel name="regnumber" required RegNumberValidator>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Telefonas</label>
+                <input type="text" class="form-control" placeholder="+37060012345" ngModel name="phone" required pattern="[+370][0-9]{11}">
+            </div>
+            <button class="btn btn-success" type="submit" [disabled]="!forma.valid">Registruoti automobilį</button>
+            <button class="btn btn-success" type="reset">Išvalyti formą</button>
+        </form>
+    </div>
+</div>
