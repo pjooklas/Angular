@@ -13,7 +13,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Gimimo metai</label>
-                <input type="number" class="form-control" placeholder="Nuo 1970 m. iki 2022 m." ngModel name="gim_metai" required min="2010" max="2022" #inputGimimoMetai="ngModel">
+                <input type="number" class="form-control" placeholder="Nuo 2010 m. iki 2022 m." ngModel name="gim_metai" required #inputGimimoMetai="ngModel" gimimoValidation>
                 <span class="help-block" *ngIf="!inputGimimoMetai.valid && inputGimimoMetai.touched">Vaiko gimimo metai gali būti nuo 2010 m. iki 2022 m. </span>
             </div>
             <div class="mb-3">
@@ -37,8 +37,8 @@
                 <span class="help-block" *ngIf="!inputKlase.valid && inputKlase.touched">Lankoma klasė gali būti nuo 5 kl. iki 12 kl. </span>
             </div>
             <div class="mb-3">
-                <button class="btn btn-success mb-3" type="submit" [disabled]="!forma.valid">Registruoti</button><br>
-                <button class="btn btn-info" type="reset">Išvalyti formą</button>
+                <button class="btn btn-success col-12 mb-3" type="submit" [disabled]="!forma.valid">Registruoti</button><br>
+                <button class="btn btn-info col-12" type="reset">Išvalyti formą</button>
 
             </div>
         </form>
