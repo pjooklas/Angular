@@ -17,7 +17,7 @@ export class GimimoValidationDirective {
 
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
     let value:number=control.value;
-    if (value>=2010 && value<=2022){
+    if (value>=2010 && value<=new Date().getFullYear()){
       return null;
     }else{
       return {error:"klaida"};
