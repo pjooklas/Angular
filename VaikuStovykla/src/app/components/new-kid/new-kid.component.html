@@ -1,5 +1,5 @@
 
-<div class="card">
+<div class="card  bg-secondary">
     <div class="card-header">Registruoti vaiką į stovyklą</div>
     <div class="card-body">
         <form (ngSubmit)="registrationSubmit(forma)" #forma="ngForm">
@@ -37,8 +37,8 @@
                 <span class="help-block" *ngIf="!inputKlase.valid && inputKlase.touched">Lankoma klasė gali būti nuo 5 kl. iki 12 kl. </span>
             </div>
             <div class="mb-3">
-                <button class="btn btn-success col-12 mb-3" type="submit" [disabled]="!forma.valid">Registruoti</button><br>
-                <button class="btn btn-info col-12" type="reset">Išvalyti formą</button>
+                <button class="btn btn-success col-4" type="submit" [disabled]="!forma.valid">Registruoti</button>
+                <button class="btn btn-info col-4 float-end" type="reset">Išvalyti formą</button>
 
             </div>
         </form>
