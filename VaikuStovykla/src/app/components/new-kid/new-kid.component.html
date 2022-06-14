@@ -25,7 +25,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">El. paštas</label>
-                <input type="text" class="form-control" placeholder="vardas@domenas.lt" ngModel name="email" required>
+                <input type="email" class="form-control" placeholder="vardas@domenas.lt" ngModel name="email" required email>
             </div>
             <div class="mb-3">
                 <label class="form-label">Telefonas</label>
@@ -33,7 +33,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Klasė</label>
-                <input type="text" class="form-control" placeholder="Nuo 5 klasės iki 12 klasės" ngModel name="klase" required min="5" max="12" #inputKlase="ngModel">
+                <input type="number" class="form-control" placeholder="Nuo 5 klasės iki 12 klasės" ngModel name="klase" required min="5" max="12" #inputKlase="ngModel">
                 <span class="help-block" *ngIf="!inputKlase.valid && inputKlase.touched">Lankoma klasė gali būti nuo 5 kl. iki 12 kl. </span>
             </div>
             <div class="mb-3">
