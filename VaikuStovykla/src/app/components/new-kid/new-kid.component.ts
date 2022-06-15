@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { RegistrationService } from 'src/app/services/registration.service';
 })
 export class NewKidComponent implements OnInit {
 
-  constructor(private registrationService:RegistrationService) { }
+  constructor(private registrationService:RegistrationService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -16,7 +17,7 @@ export class NewKidComponent implements OnInit {
   public registrationSubmit(forma:any){
     console.log("Forma issiusta");
     this.registrationService.addRegistration(forma.form.value).subscribe(()=>{
-
+      this.router.navigate(["/"]);
     });    
   }
 

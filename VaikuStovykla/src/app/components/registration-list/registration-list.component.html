@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-header">Užregistruoti vaikai</div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Vardas</th>
+                    <th>Pavardė</th>
+                    <th>Gimimo metai</th>
+                    <th>Lytis</th>
+                    <th>Klasė</th>
+                    <th>Tel. nr.</th>
+                    <th>El. paštas</th>
+                    <th>Veiksmai</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let registration of registrations">
+                    <td>{{ registration.vardas }}</td>
+                    <td>{{ registration.pavarde }}</td>
+                    <td>{{ registration.gim_metai }}</td>
+                    <td>{{ registration.lytis }}</td>
+                    <td>{{ registration.klase }}</td>
+                    <td>{{ registration.telefonas }}</td>
+                    <td>{{ registration.email }}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

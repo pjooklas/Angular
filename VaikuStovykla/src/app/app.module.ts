@@ -6,17 +6,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NewKidComponent } from './components/new-kid/new-kid.component';
 import { GimimoValidationDirective } from './directives/gimimo-validation.directive';
+import { RegistrationListComponent } from './components/registration-list/registration-list.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes:Routes=[
+  {path: '', component:RegistrationListComponent},
+  {path: 'registrationNew', component: NewKidComponent}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     NewKidComponent,
-    GimimoValidationDirective
+    GimimoValidationDirective,
+    RegistrationListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
