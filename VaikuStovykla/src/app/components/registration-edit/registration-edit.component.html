@@ -1,0 +1,57 @@
+
+<div class="card bg-secondary">
+    <div class="card-header">Redaguoti vaiko duomenis</div>
+        <div *ngIf="!loading && !error">
+            <div class="card-body">
+                <form (ngSubmit)="onUpdate()" #forma="ngForm">
+                    <div class="mb-3">
+                        <label class="form-label">Vardas</label>
+                        <input type="text" class="form-control" placeholder="Vardas" ngModel name="vardas" required minlength="3" maxlength="15" [(ngModel)]="registration.vardas">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Pavardė</label>
+                        <input type="text" class="form-control" placeholder="Pavardė" ngModel name="pavarde" required minlength="2" maxlength="16" [(ngModel)]="registration.pavarde">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Gimimo metai</label>
+                        <input type="number" class="form-control" placeholder="Nuo 2010 m. iki 2022 m." ngModel name="gim_metai" required #inputGimimoMetai="ngModel" gimimoValidation [(ngModel)]="registration.gim_metai">
+                        <span class="help-block" *ngIf="!inputGimimoMetai.valid && inputGimimoMetai.touched">Vaiko gimimo metai gali būti nuo 2010 m. iki 2022 m. </span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Lytis</label><br>
+                            <input type="radio" id="berniukas" ngModel name="lytis" value="berniukas" required [(ngModel)]="registration.lytis">
+                            <label for="berniukas">Berniukas</label><br>
+                            <input type="radio" id="mergaite" ngModel name="lytis" value="mergaite" [(ngModel)]="registration.lytis">
+                            <label for="mergaite">Mergaitė</label><br>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">El. paštas</label>
+                        <input type="email" class="form-control" placeholder="vardas@domenas.lt" ngModel name="email" required email [(ngModel)]="registration.email">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Telefonas</label>
+                        <input type="text" class="form-control" placeholder="+37060012345" ngModel name="telefonas" required pattern="[+370][0-9]{11}" [(ngModel)]="registration.telefonas">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Klasė</label>
+                        <input type="number" class="form-control" placeholder="Nuo 5 klasės iki 12 klasės" ngModel name="klase" required min="5" max="12" #inputKlase="ngModel" [(ngModel)]="registration.klase">
+                        <span class="help-block" *ngIf="!inputKlase.valid && inputKlase.touched">Lankoma klasė gali būti nuo 5 kl. iki 12 kl. </span>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-success col-4" type="submit" [disabled]="!forma.valid">Išsaugoti</button>
+                        <button class="btn btn-info col-4 float-end" type="reset">Išvalyti formą</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div *ngIf="loading && !error" class="alert alert-info">
+            Content is loading...
+        </div>
+
+        <div *ngIf="error" class="alert alert-danger">
+            Error...
+        </div>
+
+</div>

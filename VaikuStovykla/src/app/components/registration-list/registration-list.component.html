@@ -23,7 +23,9 @@
                     <td>{{ registration.klase }}</td>
                     <td>{{ registration.telefonas }}</td>
                     <td>{{ registration.email }}</td>
-                    <td></td>
+                    <td>
+                        <a [routerLink]="['/registrationEdit',registration.id]" class="btn btn-info">Redaguoti</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

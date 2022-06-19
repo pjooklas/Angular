@@ -8,10 +8,12 @@ import { NewKidComponent } from './components/new-kid/new-kid.component';
 import { GimimoValidationDirective } from './directives/gimimo-validation.directive';
 import { RegistrationListComponent } from './components/registration-list/registration-list.component';
 import { RouterModule, Routes } from '@angular/router';
+import { RegistrationEditComponent } from './components/registration-edit/registration-edit.component';
 
 const routes:Routes=[
   {path: '', component:RegistrationListComponent},
-  {path: 'registrationNew', component: NewKidComponent}
+  {path: 'registrationNew', component: NewKidComponent},
+  {path: 'registrationEdit/:id', component:RegistrationEditComponent}
 ]
 
 @NgModule({
@@ -19,7 +21,8 @@ const routes:Routes=[
     AppComponent,
     NewKidComponent,
     GimimoValidationDirective,
-    RegistrationListComponent
+    RegistrationListComponent,
+    RegistrationEditComponent
   ],
   imports: [
     BrowserModule,

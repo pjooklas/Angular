@@ -8,6 +8,7 @@ import { RegistrationNewComponent } from './components/registration-new/registra
 import { RegNumberValidatorDirective } from './directives/reg-number-validator.directive';
 import { RegistrationListComponent } from './components/registration-list/registration-list.component';
 import { RouterModule, Routes } from '@angular/router';
+import { RegistrationEditComponent } from './components/registration-edit/registration-edit.component';
 
 const routes:Routes=[
   {path: '', component:RegistrationListComponent},
@@ -20,7 +21,8 @@ const routes:Routes=[
     AppComponent,
     RegistrationNewComponent,
     RegNumberValidatorDirective,
-    RegistrationListComponent
+    RegistrationListComponent,
+    RegistrationEditComponent
   ],
   imports: [
     BrowserModule,

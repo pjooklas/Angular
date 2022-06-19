@@ -26,4 +26,17 @@ export class RegistrationService {
     )
   }
 
+  public getRegistration(id:string){
+    return this.http.get<Registration>(this.url+"stovykla/"+id+".json").pipe(
+      map((response)=>{
+        response.id=id;
+        return response;
+      })
+    )
+  }
+
+  public updateRegistration(registration:Registration){
+    return this.http.patch(this.url+"stovykla/"+registration.id+".json", registration);
+  }
+
 }
