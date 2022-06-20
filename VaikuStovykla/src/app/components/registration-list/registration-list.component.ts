@@ -10,13 +10,41 @@ import { RegistrationService } from 'src/app/services/registration.service';
 export class RegistrationListComponent implements OnInit {
 
   public registrations:Registration[]=[];
+  public display:string = '';
+  public person:Registration = new Registration;
 
   constructor(private registrationService:RegistrationService) { }
 
-  ngOnInit(): void {
+  private loadRegistrations(){
     this.registrationService.getRegistrations().subscribe((result)=>{
       this.registrations=result;   
     });
   }
+
+  ngOnInit(): void {
+    this.loadRegistrations();
+  }
+
+  public onDeleteRegistration(id:string|null) {
+    console.log('triname');
+    if (id!=null) {
+      this.registrationService.deleteRegistration(id).subscribe(()=>{
+        this.loadRegistrations();
+        this.display='none';
+      })
+    }
+    
+  }
+
+  public openModal(person: Registration){
+    if (person != null) {
+      this.person = person;
+      this.display='block';
+    }
+ }
+
+  public onClose(){
+      this.display='none';
+ }
 
 }

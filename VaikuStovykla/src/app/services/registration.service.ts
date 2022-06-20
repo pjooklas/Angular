@@ -39,4 +39,8 @@ export class RegistrationService {
     return this.http.patch(this.url+"stovykla/"+registration.id+".json", registration);
   }
 
+  public deleteRegistration(id:string){
+    return this.http.delete(this.url+"stovykla/"+id+".json");
+  }
+
 }

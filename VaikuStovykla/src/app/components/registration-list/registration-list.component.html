@@ -24,10 +24,52 @@
                     <td>{{ registration.telefonas }}</td>
                     <td>{{ registration.email }}</td>
                     <td>
-                        <a [routerLink]="['/registrationEdit',registration.id]" class="btn btn-info">Redaguoti</a>
+                        <a [routerLink]="['/registrationEdit',registration.id]" class="btn btn-info me-3">Redaguoti</a>
+                        <button class="btn btn-danger" (click)="openModal(registration)">
+                          Ištrinti
+                        </button>                       
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+<div class="modal" tabindex="-1" [ngStyle]="{ display: display }">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Vaiko ištrinimas</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="onClose()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Ar norite ištrinti vaiką {{ person.vardas }} {{ person.pavarde }} ?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-warning"
+          data-bs-dismiss="modal"
+          (click)="onClose()"
+        >
+          Atšaukti
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="onDeleteRegistration(person.id)"
+        >
+          Ištrinti
+        </button>
+      </div>
+    </div>
+  </div>
+</div>             
