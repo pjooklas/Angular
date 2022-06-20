@@ -3,7 +3,7 @@
       <div class="card">
         <div class="card-header">Registracija</div>
         <div class="card-body">
-          <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <form (ngSubmit)="onSubmit(form)" #form="ngForm">
             <div class="mb-3">
               <label for="" class="form-label">El. paštas</label>
               <input
@@ -11,7 +11,7 @@
                 class="form-control"
                 ngModel
                 name="email"
-                appEmailValidator
+                [(ngModel)]="email"
                 required
               />
             </div>
@@ -22,10 +22,9 @@
                 class="form-control"
                 ngModel
                 name="password"
+                [(ngModel)]="password"
                 minlength="6"
-                #password
                 required
-                appPasswordValidator
               />
             </div>
             <div class="mb-3">
@@ -34,17 +33,16 @@
                 type="password"
                 class="form-control"
                 ngModel
-                name="password1"
+                name="passwordConfirm"
+                [(ngModel)]="passwordConfirm"
                 minlength="6"
-                #password1
                 required
-                appPasswordValidator
               />
             </div>
             <button
               type="submit"
               class="btn btn-info"
-              [disabled]="password.value != password1.value || !f.valid"
+              [disabled]="!form.valid || password !== passwordConfirm"
             >
               Registruotis
             </button>
