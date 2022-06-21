@@ -50,6 +50,14 @@ export class AuthService {
     this.user=null;
     localStorage.removeItem("user");
     this.userUpdated.emit();
-  }  
+  }
+  
+  public changePassword(newPassword:string){
+    return this.http.post<User>(this.url+":update?key="+this.key, {
+      idToken: this.user?.idToken,
+      password:newPassword,
+      returnSecureToken:true
+    }).pipe(tap(this.successLoginFunc));
+  }
 
 }

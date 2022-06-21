@@ -22,8 +22,8 @@
                     <td>{{ registration.lytis }}</td>
                     <td>{{ registration.klase }}</td>
                     <td>{{ registration.telefonas }}</td>
-                    <td *ngIf="user!=null">{{ registration.email }}</td>
-                    <td>
+                    <td>{{ registration.email }}</td>
+                    <td  *ngIf="user!=null">
                         <a [routerLink]="['/registrationEdit',registration.id]" class="btn btn-info me-3">Redaguoti</a>
                         <button class="btn btn-danger" (click)="onDeleteRegistration(registration.id)">Ištrinti</button>                       
                     </td>

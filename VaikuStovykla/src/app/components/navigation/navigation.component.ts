@@ -23,4 +23,9 @@ export class NavigationComponent implements OnInit {
     this.authService.logOut();
   }
 
+  public changePassword(newPassword:string){
+    console.log('change password');
+    this.authService.changePassword(newPassword);
+  }
+
 }
