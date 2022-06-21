@@ -13,13 +13,16 @@ import { AuthComponent } from './components/auth/auth.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { AuthGuard } from './guards/auth.guard';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 const routes:Routes=[
   {path: '', component:RegistrationListComponent},
-  {path: 'registrationNew', component: NewKidComponent},
-  {path: 'registrationEdit/:id', component:RegistrationEditComponent},
+  {path: 'registrationNew', component: NewKidComponent, canActivate:[AuthGuard]},
+  {path: 'registrationEdit/:id', component:RegistrationEditComponent, canActivate:[AuthGuard]},
   {path: 'register', component:AuthComponent},
-  {path: 'changePassword', component:ChangePasswordComponent}
+  {path: 'changePassword', component:ChangePasswordComponent, canActivate:[AuthGuard]},
+  {path: 'unauthorized', component:UnauthorizedComponent}
 ]
 
 @NgModule({
@@ -31,7 +34,8 @@ const routes:Routes=[
     RegistrationEditComponent,
     AuthComponent,
     NavigationComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,

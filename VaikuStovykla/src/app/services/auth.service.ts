@@ -16,7 +16,7 @@ export class AuthService {
   private readonly key="AIzaSyBz1Zu6fq-3GCjvE5IeEguN24qZMY7rzuU";
   private readonly url="https://identitytoolkit.googleapis.com/v1/accounts";
   private successLoginFunc=(response:User)=>{
-    this.user=response;
+    this.user=User.generateUser(response);
     localStorage.setItem("VaikuStovyklaUser", JSON.stringify(this.user));
     this.userUpdated.emit();
   }
@@ -42,13 +42,18 @@ export class AuthService {
   public autologin(){
     let data=localStorage.getItem("VaikuStovyklaUser");
     if (data!=null) {
-      this.user=JSON.parse(data);
+      let temp:User=JSON.parse(data);
+      this.user=User.generateUser(temp, temp.loginTime);
+      if (this.user?.isExpired()) {
+        this.user=null;
+        localStorage.removeItem("VaikuStovyklaUser");
+      }
     }
   }
 
   public logOut(){
     this.user=null;
-    localStorage.removeItem("user");
+    localStorage.removeItem("VaikuStovyklaUser");
     this.userUpdated.emit();
   }
   

@@ -16,6 +16,19 @@ export class ChangePasswordComponent implements OnInit {
 
   public error: string = '';
 
+  private errorFunc=(response:any)=>{
+    console.log(response);
+    
+    switch(response.error.error.message){
+      case "INVALID_ID_TOKEN":
+              this.error="Reikia prisijungti per naują, tokenas nebegalioja";
+              break;
+      case "WEAK_PASSWORD":
+            this.error="Slaptažodis turi būti ne trumpesnis nei 6 simboliai";
+            break;      
+    }
+  }
+
   constructor(private auth:AuthService, private router: Router) { }
 
   ngOnInit(): void {
