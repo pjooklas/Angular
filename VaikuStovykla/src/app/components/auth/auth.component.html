@@ -1,53 +1,36 @@
 <div class="row">
     <div class="col-md-6 offset-md-3 col-xs-12 mt-3">
       <div class="card">
-        <div class="card-header">Registracija</div>
+        <div class="card-header">{{ isLoginMode ? "Prisijunkite prie sistemos" : "Registruokitės" }}</div>
         <div class="card-body">
-          <form (ngSubmit)="onSubmit(form)" #form="ngForm">
-            <div class="mb-3">
-              <label for="" class="form-label">El. paštas</label>
-              <input
-                type="text"
-                class="form-control"
-                ngModel
-                name="email"
-                [(ngModel)]="email"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Slaptažodis</label>
-              <input
-                type="password"
-                class="form-control"
-                ngModel
-                name="password"
-                [(ngModel)]="password"
-                minlength="6"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Pakartokite slaptažodį</label>
-              <input
-                type="password"
-                class="form-control"
-                ngModel
-                name="passwordConfirm"
-                [(ngModel)]="passwordConfirm"
-                minlength="6"
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              class="btn btn-info"
-              [disabled]="!form.valid || password !== passwordConfirm"
-            >
-              Registruotis
-            </button>
-          </form>
+            <div class="alert alert-danger" *ngIf="error!=''">{{ error }}</div>
+            <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+                <div class="mb-3">
+                    <label class="form-label">El. paštas</label>
+                    <input type="text" class="form-control" ngModel name="email" required/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Slaptažodis</label>
+                    <input type="password" class="form-control" ngModel name="password" minlength="6" required/>
+                </div>
+                <div class="mb-3" *ngIf="!isLoginMode">
+                    <label class="form-label">Pakartokite slaptažodį</label>
+                    <input type="password" class="form-control" ngModel name="passwordConfirm" minlength="6" required/>
+                </div>
+                <button type="submit" class="btn btn-success"
+                    [disabled]="!form.valid || password !== passwordConfirm">
+                    {{ isLoginMode ? "Prisijungti" : "Registruotis" }}
+                </button>
+                <button type="button" class="btn btn-info float-end" (click)="isLoginMode=!isLoginMode">
+                    {{ !isLoginMode ? "Turite paskyrą? Prisijunkite." : "Neturite paskyros? Registruokitės." }}
+                </button>
+            </form>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- [(ngModel)]="email" 
+[(ngModel)]="password"
+[(ngModel)]="passwordConfirm"
+-->

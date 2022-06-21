@@ -40,33 +40,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Vaiko ištrinimas</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          (click)="onClose()"
-        ></button>
+        <button  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="onClose()"></button>
       </div>
       <div class="modal-body">
-        <p>
-          Ar norite ištrinti vaiką {{ person.vardas }} {{ person.pavarde }} ?
-        </p>
+        <p>Ar norite ištrinti vaiko {{ person.vardas }} {{ person.pavarde }} duomenis?</p>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-warning"
-          data-bs-dismiss="modal"
-          (click)="onClose()"
-        >
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" (click)="onClose()">
           Atšaukti
         </button>
-        <button
-          type="button"
-          class="btn btn-danger"
-          (click)="onDeleteRegistration(person.id)"
-        >
+        <button type="button" class="btn btn-danger" (click)="onDeleteRegistration(person.id)">
           Ištrinti
         </button>
       </div>
