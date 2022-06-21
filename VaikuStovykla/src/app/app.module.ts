@@ -15,6 +15,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { AuthGuard } from './guards/auth.guard';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 const routes:Routes=[
   {path: '', component:RegistrationListComponent},
@@ -35,7 +36,8 @@ const routes:Routes=[
     AuthComponent,
     NavigationComponent,
     ChangePasswordComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
