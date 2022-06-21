@@ -11,7 +11,7 @@
                     <th>Klasė</th>
                     <th>Tel. nr.</th>
                     <th>El. paštas</th>
-                    <th>Veiksmai</th>
+                    <th *ngIf="user!=null">Veiksmai</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,12 +22,10 @@
                     <td>{{ registration.lytis }}</td>
                     <td>{{ registration.klase }}</td>
                     <td>{{ registration.telefonas }}</td>
-                    <td>{{ registration.email }}</td>
+                    <td *ngIf="user!=null">{{ registration.email }}</td>
                     <td>
                         <a [routerLink]="['/registrationEdit',registration.id]" class="btn btn-info me-3">Redaguoti</a>
-                        <button class="btn btn-danger" (click)="openModal(registration)">
-                          Ištrinti
-                        </button>                       
+                        <button class="btn btn-danger" (click)="onDeleteRegistration(registration.id)">Ištrinti</button>                       
                     </td>
                 </tr>
             </tbody>
@@ -35,7 +33,7 @@
     </div>
 </div>
 
-<div class="modal" tabindex="-1" [ngStyle]="{ display: display }">
+<!-- <div class="modal" tabindex="-1" [ngStyle]="{ display: display }">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -55,4 +53,4 @@
       </div>
     </div>
   </div>
-</div>             
+</div>              -->

@@ -1,10 +1,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-12 mb-3">
-      <a class="btn btn-success me-3" routerLink="/registrationNew">Registruoti naują vaiką</a>
-      <a class="btn btn-success me-3" routerLink="/">Vaikų sąrašas</a>
-      <div class="float-end" *ngIf="user!=null">Jūs esate prisijungęs kaip: {{ user?.email }}</div>
-      <div class="float-end" *ngIf="user==null">Jūs nesate prisijungęs</div>
+      <app-navigation></app-navigation>
     </div>
     <div class="col-md-12">
       <router-outlet></router-outlet>

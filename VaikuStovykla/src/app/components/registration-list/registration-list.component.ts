@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Registration } from 'src/app/models/registration';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({
@@ -10,10 +12,9 @@ import { RegistrationService } from 'src/app/services/registration.service';
 export class RegistrationListComponent implements OnInit {
 
   public registrations:Registration[]=[];
-  public display:string = '';
-  public person:Registration = new Registration;
+  public user:User|null=null;
 
-  constructor(private registrationService:RegistrationService) { }
+  constructor(private registrationService:RegistrationService, private auth:AuthService) { }
 
   private loadRegistrations(){
     this.registrationService.getRegistrations().subscribe((result)=>{
@@ -23,6 +24,10 @@ export class RegistrationListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadRegistrations();
+    this.user=this.auth.user;
+    this.auth.userUpdated.subscribe(()=>{
+      this.user=this.auth.user;
+    })
   }
 
   public onDeleteRegistration(id:string|null) {
@@ -30,21 +35,9 @@ export class RegistrationListComponent implements OnInit {
     if (id!=null) {
       this.registrationService.deleteRegistration(id).subscribe(()=>{
         this.loadRegistrations();
-        this.display='none';
       })
     }
     
   }
-
-  public openModal(person: Registration){
-    if (person != null) {
-      this.person = person;
-      this.display='block';
-    }
- }
-
-  public onClose(){
-      this.display='none';
- }
 
 }
