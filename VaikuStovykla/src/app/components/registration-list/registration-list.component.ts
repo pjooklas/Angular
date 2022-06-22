@@ -13,6 +13,9 @@ export class RegistrationListComponent implements OnInit {
 
   public registrations:Registration[]=[];
   public user:User|null=null;
+  public showModal:boolean = false;
+  public vaikoID:string = '';
+  // public vaikoVardas:string|null = '';
 
   constructor(private registrationService:RegistrationService, private auth:AuthService) { }
 
@@ -26,18 +29,26 @@ export class RegistrationListComponent implements OnInit {
     this.loadRegistrations();
     this.user=this.auth.user;
     this.auth.userUpdated.subscribe(()=>{
-      this.user=this.auth.user;
+    this.user=this.auth.user;
     })
   }
 
   public onDeleteRegistration(id:string|null) {
-    console.log('triname');
+    this.showModal=true;
     if (id!=null) {
-      this.registrationService.deleteRegistration(id).subscribe(()=>{
-        this.loadRegistrations();
-      })
-    }
-    
+      this.vaikoID=id;
+    }  
+  }
+
+  public onClose() {
+    this.showModal = false;
+  }
+
+  public onDelete() {
+    this.registrationService.deleteRegistration(this.vaikoID).subscribe(() => {
+      this.showModal = false;
+      this.loadRegistrations();
+    });
   }
 
 }
