@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-header">
+        Pridėti naują receptą
+    </div>
+    <div class="card-body">
+        <form [formGroup]="receptoForma" (ngSubmit)="naujasReceptas()">
+            <div class="mb-3">
+                <label for="pavadinimas" class="form-label">Recepto pavadinimas:</label>
+                <input id="pavadinimas" class="form-control" formControlName="pavadinimas" placeholder="Įveskite recepto pavadinimą" type="text">
+                <!-- <span *ngIf="!receptoForma.get('name')?.valid && receptoForma.get('name')?.touched  ">Vardas įvestas neteisingai</span> -->
+            </div>
+            <div class="mb-3">
+                <label for="gaminimo_laikas" class="form-label">Gaminimo trukmė (5 min interval.):</label>
+                <input id="gaminimo_laikas" class="form-control" formControlName="gaminimo_laikas" placeholder="Įveskite recepto gaminimo trukmę" type="number">
+            </div>
+            <div class="mb-3">
+                <label for="aprasymas" class="form-label">Aprašymas:</label>
+                <textarea name="aprasymas" id="aprasymas" formControlName="aprasymas" class="form-control" rows="3" placeholder="Recepto aprašymas" type="text"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="nuotrauka" class="form-label">Nuotraukos URL:</label>
+                <input  id="nuotrauka" class="form-control" formControlName="nuotrauka" placeholder="Įveskite recepto nuotraukos URL" type="text">
+            </div>
+            <div class="mb-3">
+                <label for="kalorijos" class="form-label">Kalorijų skaičius:</label>
+                <input  id="kalorijos" class="form-control" formControlName="kalorijos" placeholder="Įveskite kalorijų skaičių" type="number">
+            </div>
+            
+            <button type="submit" class="btn btn-success" [disabled]="!receptoForma.valid" >Pridėti</button>
+        
+        </form>
+    </div>
+</div>
