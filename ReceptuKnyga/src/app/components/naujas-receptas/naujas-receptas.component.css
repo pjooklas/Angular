@@ -6,12 +6,19 @@ input.ng-invalid.ng-touched {
 input.ng-valid.ng-touched {
     border: 3px solid limegreen;
 }
-
-textarea.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched {
     border: 3px solid orangered;
     background-color: rgb(197, 185, 161);
 }
 
-textarea.ng-valid.ng-touched {
+input.ng-valid.ng-touched {
+    border: 3px solid limegreen;
+}
+select.ng-invalid.ng-touched {
+    border: 3px solid orangered;
+    background-color: rgb(197, 185, 161);
+}
+
+select.ng-valid.ng-touched {
     border: 3px solid limegreen;
 }

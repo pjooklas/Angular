@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-naujas-receptas',
@@ -20,7 +20,9 @@ export class NaujasReceptasComponent implements OnInit {
         [Validators.required]),
       'nuotrauka':new FormControl(null, 
         [this.urlValidatorius]),
-      'kalorijos':new FormControl(null)
+      'kalorijos':new FormControl(null),
+      'alergenai':new FormArray([]),
+      'ingridientai':new FormArray([])
     })
   }
 
@@ -47,6 +49,32 @@ export class NaujasReceptasComponent implements OnInit {
   //pasitikrinimui
   public naujasReceptas(){
     console.log(this.receptoForma);
+  }
+
+  public pridetiAlergena(){
+    const alergenas=new FormControl(null, Validators.required);
+    (<FormArray> this.receptoForma.get('alergenai')).push(alergenas);
+  }
+
+  public alergenai(){
+    return (<FormArray> this.receptoForma.get('alergenai')).controls;
+  }
+
+  public pridetiIngridienta(){
+    const ingridientas=new FormGroup({
+      produkto_pavadinimas:new FormControl(null,Validators.required),
+      kiekis:new FormControl(null, Validators.required),
+      matavimo_vnt:new FormControl(null, Validators.required)
+    });
+    (<FormArray> this.receptoForma.get('ingridientai')).push(ingridientas);
+  }
+
+  public ingridientai(){
+    return (<FormArray> this.receptoForma.get('ingridientai')).controls;
+  }
+
+  public abstractToFormGroup(formGroup:AbstractControl){
+    return <FormGroup>formGroup;
   }
 
 }

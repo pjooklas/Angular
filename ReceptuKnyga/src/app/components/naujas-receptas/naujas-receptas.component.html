@@ -26,6 +26,42 @@
                 <input  id="kalorijos" class="form-control" formControlName="kalorijos" placeholder="Įveskite kalorijų skaičių" type="number">
             </div>
             
+            <hr>
+            <div formArrayName="alergenai">
+                <h4>Alergenai</h4>
+                <div *ngFor="let alergenuControl of alergenai(); let i=index" class="mb-3">
+                    <input type="text" class="form-control" [formControlName]="i">
+                </div>
+            </div>
+            <button type="button" class="btn btn-info" (click)="pridetiAlergena()">Pridėti alergeną</button>
+
+            <div formArrayName="addresses">
+                <h4>Ingridientai</h4>
+                <div class="mb-3 row" *ngFor="let address of ingridientai(); let i=index" [formGroup]="abstractToFormGroup(address)">
+                        <div class="col-md-1">
+                            <input type="text" class="form-control-plaintext " [value]="i+1" readonly disabled style="text-align: right;">
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" formControlName="produkto_pavadinimas" class="form-control " placeholder="Produkto pavadinimas">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="number" formControlName="kiekis" class="form-control " placeholder="Kiekis" min="0">
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-control" formControlName="matavimo_vnt" name="" id="">
+                                <option>vnt.</option>
+                                <option>kg</option>
+                                <option>g</option>
+                                <option>stiklinė</option>
+                            </select>
+                            
+                        </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-info" (click)="pridetiIngridienta()">Pridėti ingridientą</button>
+            <hr>
+
+            <hr>
             <button type="submit" class="btn btn-success" [disabled]="!receptoForma.valid" >Pridėti</button>
         
         </form>
