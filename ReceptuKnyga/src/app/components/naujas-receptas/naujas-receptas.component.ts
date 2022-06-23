@@ -60,6 +60,10 @@ export class NaujasReceptasComponent implements OnInit {
     return (<FormArray> this.receptoForma.get('alergenai')).controls;
   }
 
+  public pasalintiAlergena(i:number){
+    (<FormArray> this.receptoForma.get('alergenai')).removeAt(i);
+  }
+
   public pridetiIngridienta(){
     const ingridientas=new FormGroup({
       produkto_pavadinimas:new FormControl(null,Validators.required),
@@ -67,6 +71,10 @@ export class NaujasReceptasComponent implements OnInit {
       matavimo_vnt:new FormControl(null, Validators.required)
     });
     (<FormArray> this.receptoForma.get('ingridientai')).push(ingridientas);
+  }
+
+  public pasalintiIngridienta(i:number){
+    (<FormArray> this.receptoForma.get('ingridientai')).removeAt(i);
   }
 
   public ingridientai(){

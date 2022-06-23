@@ -29,16 +29,21 @@
             <hr>
             <div formArrayName="alergenai">
                 <h4>Alergenai</h4>
-                <div *ngFor="let alergenuControl of alergenai(); let i=index" class="mb-3">
-                    <input type="text" class="form-control" [formControlName]="i">
+                <div *ngFor="let alergenuControl of alergenai(); let i=index" class="mb-3 row">
+                    <div class="col-md-11">
+                        <input type="text" class="form-control" [formControlName]="i">
+                      </div>
+                      <div class="col-1">
+                        <button  type="button" class="btn btn-danger" (click)="pasalintiAlergena(i)">X</button>
+                      </div>
                 </div>
             </div>
             <button type="button" class="btn btn-info" (click)="pridetiAlergena()">Pridėti alergeną</button>
 
-            <div formArrayName="addresses">
+            <div formArrayName="ingridientai">
                 <h4>Ingridientai</h4>
                 <div class="mb-3 row" *ngFor="let address of ingridientai(); let i=index" [formGroup]="abstractToFormGroup(address)">
-                        <div class="col-md-1">
+                        <div class="col-md-1 mb-3">
                             <input type="text" class="form-control-plaintext " [value]="i+1" readonly disabled style="text-align: right;">
                         </div>
                         <div class="col-md-7">
@@ -54,12 +59,16 @@
                                 <option>g</option>
                                 <option>stiklinė</option>
                             </select>
-                            
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button  type="button" class="btn btn-danger mx-auto" (click)="pasalintiIngridienta(i)">Pašalinti ingridientą</button>
+
                         </div>
                 </div>
+                <button type="button" class="btn btn-info me-3" (click)="pridetiIngridienta()">Pridėti ingridientą</button>
+                <!-- <button *ngIf="i>0" type="button" class="btn btn-info" (click)="pasalintiIngridienta()">Pašalinti ingridientą</button> -->
+                <hr>
             </div>
-            <button type="button" class="btn btn-info" (click)="pridetiIngridienta()">Pridėti ingridientą</button>
-            <hr>
 
             <hr>
             <button type="submit" class="btn btn-success" [disabled]="!receptoForma.valid" >Pridėti</button>
