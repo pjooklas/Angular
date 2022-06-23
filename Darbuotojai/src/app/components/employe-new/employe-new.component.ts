@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, Form, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmployeService } from 'src/app/services/employe.service';
 
 @Component({
   selector: 'app-employe-new',
@@ -11,7 +12,7 @@ export class EmployeNewComponent implements OnInit {
 
   public employeForm: FormGroup
 
-  constructor( ) {
+  constructor(private employeService:EmployeService) {
     this.employeForm=new FormGroup({
       'name': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16), this.uzdraustiVardai]),
       'surname': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
@@ -34,7 +35,7 @@ export class EmployeNewComponent implements OnInit {
   }
 
   public newEmploye(){
-    console.log(this.employeForm);
+    this.employeService.addEmploye(this.employeForm.value).subscribe();
   }
 
   public addPhone(){
