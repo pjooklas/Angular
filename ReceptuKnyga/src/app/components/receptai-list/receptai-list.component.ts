@@ -13,10 +13,17 @@ export class ReceptaiListComponent implements OnInit {
 
   constructor(private receptaiService:ReceptaiServiceService) { }
 
-  ngOnInit(): void {
+  private getReceptai(){
     this.receptaiService.getReceptas().subscribe((response)=>{
       this.receptai=response;
     });
+  }
+
+  ngOnInit(): void {
+    this.getReceptai();
+    this.receptaiService.onNaujasReceptas.subscribe(()=>{
+      this.getReceptai();
+    })
   }
 
 }

@@ -57,7 +57,9 @@
                             <input type="text" class="form-control-plaintext " [value]="i+1" readonly disabled style="text-align: right;">
                         </div>
                         <div class="col-md-7">
-                            <input type="text" formControlName="produkto_pavadinimas" class="form-control " placeholder="Produkto pavadinimas">
+                            <select class="form-control" formControlName="ingridientai">
+                                <option *ngFor="let ingridientas of ingridientaiArr">{{ ingridientas.ingridientas }}</option>
+                           </select>
                         </div>
                         <div class="col-md-2">
                             <input type="number" formControlName="kiekis" class="form-control " placeholder="Kiekis" min="0">

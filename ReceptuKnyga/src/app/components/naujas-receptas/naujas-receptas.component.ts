@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
+import { IngridientaiService } from 'src/app/services/ingridientai.service';
 import { ReceptaiServiceService } from 'src/app/services/receptai-service.service';
 
 @Component({
@@ -10,9 +11,10 @@ import { ReceptaiServiceService } from 'src/app/services/receptai-service.servic
 })
 export class NaujasReceptasComponent implements OnInit {
 
-  public receptoForma: FormGroup
+  public receptoForma: FormGroup;
+  public ingridientaiArr:{ingridientas:string}[]=[];
 
-  constructor(private receptaiService:ReceptaiServiceService) { 
+  constructor(private receptaiService:ReceptaiServiceService, private ingridientaiService:IngridientaiService) { 
     this.receptoForma=new FormGroup({
       'rekomenduojamas_laikas':new FormControl(null, 
         [Validators.required]),
@@ -30,7 +32,16 @@ export class NaujasReceptasComponent implements OnInit {
     })
   }
 
+  private getIngridientai(){
+    this.ingridientaiService.getIngridientai().subscribe((result)=>{
+      this.ingridientaiArr=result;
+    })
+  }
   ngOnInit(): void {
+    this.getIngridientai();
+    this.ingridientaiService.ingridientaiUpdated.subscribe(()=>{
+      this.getIngridientai();
+    })
   }
 
   laikoValidatorius(control:FormControl):{[s:string]:boolean}|null{
