@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, Form, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, Form, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { delay, map, Observable, of } from 'rxjs';
 import { EmployeService } from 'src/app/services/employe.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class EmployeNewComponent implements OnInit {
       'name': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16), this.uzdraustiVardai]),
       'surname': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
       'gender': new FormControl('male'),
-      'email': new FormControl(null, [Validators.email, Validators.required]),
+      'email': new FormControl(null, [Validators.email, Validators.required], this.emailAvailable()),
       'phones': new FormArray([]),
       'addresses': new FormArray([])
     })
@@ -33,6 +34,33 @@ export class EmployeNewComponent implements OnInit {
       return null;
     }
   }
+
+  emailAvailable():AsyncValidatorFn{
+    return (control:AbstractControl):Observable<ValidationErrors|null>=>{
+      return this.employeService.getEmploye().pipe( map((response)=>{
+        let exist = false;
+        response.forEach((employe)=>{
+          if (employe.email==control.value){
+            exist = true;
+          }
+        });
+        if (exist) {
+          return {"Toks el. pastas egzistuoja":true};
+        } else {
+          return null;
+        }
+      }));
+    }
+  }
+
+  public outError(){
+    let control=this.employeForm.get('email');
+    if (control?.errors!=null){
+      return (control.errors['error']);
+    }
+    return "";
+  }
+
 
   public newEmploye(){
     this.employeService.addEmploye(this.employeForm.value).subscribe();
