@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, Form, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { delay, map, Observable, of } from 'rxjs';
+import { CitiesService } from 'src/app/services/cities.service';
 import { EmployeService } from 'src/app/services/employe.service';
 
 @Component({
@@ -11,9 +12,10 @@ import { EmployeService } from 'src/app/services/employe.service';
 
 export class EmployeNewComponent implements OnInit {
 
-  public employeForm: FormGroup
+  public employeForm: FormGroup;
+  public cities:{city:string}[]=[];
 
-  constructor(private employeService:EmployeService) {
+  constructor(private employeService:EmployeService, private citiesService:CitiesService) {
     this.employeForm=new FormGroup({
       'name': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16), this.uzdraustiVardai]),
       'surname': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
@@ -24,8 +26,18 @@ export class EmployeNewComponent implements OnInit {
     })
    }
 
-  ngOnInit(): void {
+   private getCities(){
+    this.citiesService.getCities().subscribe((result)=>{
+      this.cities=result;
+    })
   }
+
+  ngOnInit(): void {
+    this.citiesService.getCities().subscribe((result)=>{
+      this.cities=result;
+    });
+  }
+
 
   uzdraustiVardai(control:FormControl):{[s:string]:boolean}|null{
     if (control.value=='Jonas') {
@@ -93,5 +105,7 @@ export class EmployeNewComponent implements OnInit {
   public abstractToFormGroup(formGroup:AbstractControl){
     return <FormGroup>formGroup;
   }
+
+
 
 }
