@@ -16,7 +16,7 @@ export class ReceptaiListComponent implements OnInit {
   ngOnInit(): void {
     this.receptaiService.getReceptas().subscribe((response)=>{
       this.receptai=response;
-    })
+    });
   }
 
 }
