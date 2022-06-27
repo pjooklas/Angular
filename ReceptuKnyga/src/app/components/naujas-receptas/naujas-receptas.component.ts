@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReceptaiServiceService } from 'src/app/services/receptai-service.service';
 
 @Component({
   selector: 'app-naujas-receptas',
@@ -10,7 +11,7 @@ export class NaujasReceptasComponent implements OnInit {
 
   public receptoForma: FormGroup
 
-  constructor() { 
+  constructor(private receptaiService:ReceptaiServiceService) { 
     this.receptoForma=new FormGroup({
       'pavadinimas':new FormControl(null, 
         [Validators.maxLength(30), Validators.required]),
@@ -47,9 +48,6 @@ export class NaujasReceptasComponent implements OnInit {
   }
 
   //pasitikrinimui
-  public naujasReceptas(){
-    console.log(this.receptoForma);
-  }
 
   public pridetiAlergena(){
     const alergenas=new FormControl(null, Validators.required);
@@ -83,6 +81,10 @@ export class NaujasReceptasComponent implements OnInit {
 
   public abstractToFormGroup(formGroup:AbstractControl){
     return <FormGroup>formGroup;
+  }
+
+  public newReceptas(){
+    this.receptaiService.addReceptas(this.receptoForma.value).subscribe();
   }
 
 }

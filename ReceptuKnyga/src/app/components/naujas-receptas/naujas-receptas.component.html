@@ -3,7 +3,7 @@
         Pridėti naują receptą
     </div>
     <div class="card-body">
-        <form [formGroup]="receptoForma" (ngSubmit)="naujasReceptas()">
+        <form [formGroup]="receptoForma" (ngSubmit)="newReceptas()">
             <div class="mb-3">
                 <label for="pavadinimas" class="form-label">Recepto pavadinimas:</label>
                 <input id="pavadinimas" class="form-control" formControlName="pavadinimas" placeholder="Įveskite recepto pavadinimą" type="text">

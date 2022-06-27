@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="card-header">Receptų sąrašas</div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Vardas</th>
+                    <th>Pavardė</th>
+                    <th>Lytis</th>
+                    <th>El. pašto adresas</th>
+                    <th>Telefonai</th>
+                    <th>Adresai</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let receptas of receptai">
+                    <td>{{ receptas.pavadinimas }}</td>
+                    <td>{{ receptas.gaminimo_laikas }}</td>
+                    <td>{{ receptas.aprasymas }}</td>
+                    <td>{{ receptas.nuotrauka }}</td>
+                    <td>{{ receptas.kalorijos }}</td>
+                    <td>
+                       <div *ngFor="let alergenas of receptas.alergenai">{{ alergenas }}</div> 
+                    </td>
+                    <td>
+                        <div *ngFor="let ingridientas of receptas.ingridientai">
+                            {{ ingridientas.produkto_pavadinimas }} {{ ingridientas.kiekis }} {{ ingridientas.matavimo_vnt }} 
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
