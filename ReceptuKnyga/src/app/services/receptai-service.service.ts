@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Receptas } from '../models/receptas';
 import { map } from 'rxjs/operators';
 
@@ -8,11 +8,14 @@ import { map } from 'rxjs/operators';
 })
 export class ReceptaiServiceService {
 
+  // public onNaujasReceptas = new EventEmitter;
+
   private readonly url='https://receptuknyga-491ea-default-rtdb.europe-west1.firebasedatabase.app/';
 
   constructor(private http:HttpClient) { }
 
   public addReceptas(receptas: Receptas){
+    // this.onNaujasReceptas.emit();
     return this.http.post(this.url+"receptai.json", receptas);
   }
 
