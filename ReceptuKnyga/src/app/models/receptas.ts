@@ -1,5 +1,6 @@
 export interface Receptas{
     id?:string;
+    rekomenduojamas_laikas:string;
     pavadinimas:string;
     gaminimo_laikas:number;
     aprasymas:string;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { map, Observable } from 'rxjs';
 import { ReceptaiServiceService } from 'src/app/services/receptai-service.service';
 
 @Component({
@@ -13,8 +14,10 @@ export class NaujasReceptasComponent implements OnInit {
 
   constructor(private receptaiService:ReceptaiServiceService) { 
     this.receptoForma=new FormGroup({
+      'rekomenduojamas_laikas':new FormControl(null, 
+        [Validators.required]),
       'pavadinimas':new FormControl(null, 
-        [Validators.maxLength(30), Validators.required]),
+        [Validators.maxLength(30), Validators.required], this.patiekimoLaikoValidatorius()),
       'gaminimo_laikas':new FormControl(null,
         [Validators.required, this.laikoValidatorius]),
       'aprasymas':new FormControl(null,
@@ -45,6 +48,34 @@ export class NaujasReceptasComponent implements OnInit {
     } else {
       return {'urlNevalidus': true};
     }
+  }
+
+  patiekimoLaikoValidatorius():AsyncValidatorFn{
+    return (control:AbstractControl):Observable<ValidationErrors|null>=>{
+      return this.receptaiService.getReceptas().pipe( map((response)=>{
+          let exist=false;
+          response.forEach((receptas)=>{
+            if (receptas.pavadinimas==control.value && receptas.rekomenduojamas_laikas==this.receptoForma.get('rekomenduojamas_laikas')?.value){
+              exist=true;
+            }
+          });
+          if (exist){
+            // console.log("Tokiu laiku rekomenduojamas patiekti receptas jau egzistuoja");
+            return {'error':"Tokiu laiku rekomenduojamas patiekti receptas jau egzistuoja"};
+          }else{
+            // console.log("no error");
+            return null;
+          }
+      }))
+    }
+  }
+
+  public outError(){
+    let control=this.receptoForma.get('pavadinimas');
+    if (control?.errors!=null){
+      return (control.errors['error']);
+    }
+    return "";
   }
 
   //pasitikrinimui
@@ -86,5 +117,7 @@ export class NaujasReceptasComponent implements OnInit {
   public newReceptas(){
     this.receptaiService.addReceptas(this.receptoForma.value).subscribe();
   }
+
+
 
 }
