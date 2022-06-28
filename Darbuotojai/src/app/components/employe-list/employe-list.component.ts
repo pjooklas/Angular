@@ -12,11 +12,24 @@ export class EmployeListComponent implements OnInit {
   public employes:Employe[]=[]; 
 
   constructor(private employesService:EmployeService) { }
-
-  ngOnInit(): void {
+  
+  private getEmployes(){
     this.employesService.getEmploye().subscribe((response)=>{
       this.employes=response;
     })
+  }
+
+  ngOnInit(): void {
+    this.getEmployes();
+    this.employesService.onIncreaseCompletedWork.subscribe(()=>{
+      this.getEmployes();
+    });
+  }
+
+  public increaseCompletedWorks(id?:string){
+    if (id!=null) {
+      this.employesService.increaseCompletedWorks(id);
+    }
   }
 
 }

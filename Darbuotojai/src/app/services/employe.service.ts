@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Employe } from '../models/employe';
 import {map} from 'rxjs/operators';
 
@@ -9,6 +9,8 @@ import {map} from 'rxjs/operators';
 export class EmployeService {
   
   private readonly url='https://darbuotojai-da15a-default-rtdb.europe-west1.firebasedatabase.app/';
+  
+  public onIncreaseCompletedWork=new EventEmitter();
 
   constructor(private http:HttpClient) { }
 
@@ -27,6 +29,20 @@ export class EmployeService {
         return employes;
       })
     )
+  }
+
+  public increaseCompletedWorks(id:string){
+    let completedWorks=0;
+
+    this.http.get<number>(this.url+"employes/"+ id +"/completedWorks.json").subscribe((response)=>{
+      console.log(response);
+      completedWorks=response;
+      completedWorks++;
+      this.http.patch(this.url+"employes/"+ id +".json", {completedWorks:completedWorks}).subscribe((response)=>{
+        console.log(response);
+        this.onIncreaseCompletedWork.emit();
+      });
+    })
   }
 
 }
