@@ -24,6 +24,15 @@ export class ReceptaiListComponent implements OnInit {
     this.receptaiService.onNaujasReceptas.subscribe(()=>{
       this.getReceptai();
     })
+    this.receptaiService.onNewLike.subscribe(()=>{
+      this.getReceptai();
+    })
+  }
+
+  public increaseLikes(id?:string){
+    if (id!=null) {
+      this.receptaiService.increaseLikes(id);
+    }
   }
 
 }

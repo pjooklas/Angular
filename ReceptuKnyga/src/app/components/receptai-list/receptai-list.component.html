@@ -12,6 +12,7 @@
                     <th>Kalorijos</th>
                     <th>Alergenai</th>
                     <th>Ingridientai</th>
+                    <th>Patiktukai</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,12 @@
                         <div *ngFor="let ingridientas of receptas.ingridientai">
                             {{ ingridientas.produkto_pavadinimas }} {{ ingridientas.kiekis }} {{ ingridientas.matavimo_vnt }} 
                         </div>
+                    </td>
+                    <td>
+                        {{ receptas.likes }}
+                    </td>
+                    <td>
+                        <button class="btn btn-success" (click)="increaseLikes(receptas.id)">Patinka</button>
                     </td>
                 </tr>
             </tbody>

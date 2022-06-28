@@ -8,4 +8,5 @@ export interface Receptas{
     kalorijos:number;
     alergenai:string[];
     ingridientai:{produkto_pavadinimas:string, kiekis:number, matavimo_vnt:string}[];
+    likes:number;
 }

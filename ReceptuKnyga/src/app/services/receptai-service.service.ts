@@ -9,6 +9,7 @@ import { map, tap } from 'rxjs/operators';
 export class ReceptaiServiceService {
 
   public onNaujasReceptas = new EventEmitter();
+  public onNewLike = new EventEmitter();
 
   private readonly url='https://receptuknyga-491ea-default-rtdb.europe-west1.firebasedatabase.app/';
 
@@ -31,4 +32,19 @@ export class ReceptaiServiceService {
       })
     )
   }
+
+  public increaseLikes(id:string){
+    let likes=0;
+
+    this.http.get<number>(this.url+"receptai/"+ id +"/likes.json").subscribe((response)=>{
+      console.log(response);
+      likes=response;
+      likes++;
+      this.http.patch(this.url+"receptai/"+ id +".json", {likes:likes}).subscribe((response)=>{
+        console.log(response);
+        this.onNewLike.emit();
+      });
+    })
+  }
+
 }
