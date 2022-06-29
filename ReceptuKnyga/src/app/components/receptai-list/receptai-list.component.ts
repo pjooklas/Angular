@@ -10,13 +10,42 @@ import { ReceptaiServiceService } from 'src/app/services/receptai-service.servic
 export class ReceptaiListComponent implements OnInit {
 
   public receptai:Receptas[]=[];
+  public receptaiDisplay:Receptas[]=[];
+  public filterPusryciai:boolean=false;
+  public filterPriespieciai:boolean=false;
+  public filterPietus:boolean=false;
+  public filterVakariene:boolean=false;
 
   constructor(private receptaiService:ReceptaiServiceService) { }
+
+  private filterReceptai(){
+    this.receptaiDisplay=[];
+    this.receptai.forEach((receptas)=>{ 
+      if (this.filterPusryciai==true && receptas.rekomenduojamas_laikas=="pusryciai") {
+        this.receptaiDisplay.push(receptas);
+      };
+      if (this.filterPriespieciai==true && receptas.rekomenduojamas_laikas=="priespieciai") {
+        this.receptaiDisplay.push(receptas);
+      };
+      if (this.filterPietus==true && receptas.rekomenduojamas_laikas=="pietus") {
+        this.receptaiDisplay.push(receptas);
+      };
+      if (this.filterVakariene==true && receptas.rekomenduojamas_laikas=="vakariene") {
+        this.receptaiDisplay.push(receptas);
+      };
+    })
+
+  }
 
   private getReceptai(){
     this.receptaiService.getReceptai().subscribe((response)=>{
       this.receptai=response;
+      this.filterReceptai();
     });
+  }
+
+  public filter(){
+    this.filterReceptai();
   }
 
   ngOnInit(): void {

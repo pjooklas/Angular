@@ -1,3 +1,21 @@
+<div class="row mb-3">
+    <div class="col-md-3 text-end">
+        Filtruoti pagal patiekimo laiką:
+    </div>
+    <div class="col-md-3"  class="form-control">
+        <!-- <input type="checkbox" id="visi" name="visi" value="visi">
+        <label for="visi">Visi</label><br> -->
+        <input type="checkbox" id="pusryciai" name="pusryciai" value="pusryciai" [(ngModel)]="filterPusryciai" (change)="filter()">
+        <label for="pusryciai">Pusryčiai</label><br>
+        <input type="checkbox" id="priespieciai" name="priespieciai" value="priespieciai" [(ngModel)]="filterPriespieciai" (change)="filter()">
+        <label for="priespieciai">Priešpiečiai</label><br>
+        <input type="checkbox" id="pietus" name="pietus" value="pietus" [(ngModel)]="filterPietus" (change)="filter()">
+        <label for="pietus">Pietūs</label><br>
+        <input type="checkbox" id="vakariene" name="vakariene" value="vakariene" [(ngModel)]="filterVakariene" (change)="filter()">
+        <label for="vakariene">Vakarienė</label><br>
+    </div>
+
+</div>
 <div class="row">
-    <app-receptai-item *ngFor="let receptas of receptai" class="col-lg-3 col-md-4" [receptas]="receptas"></app-receptai-item>
+    <app-receptai-item *ngFor="let receptas of receptaiDisplay" class="col-lg-3 col-md-4" [receptas]="receptas"></app-receptai-item>
 </div>
