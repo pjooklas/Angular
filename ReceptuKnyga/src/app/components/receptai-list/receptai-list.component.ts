@@ -14,13 +14,9 @@ export class ReceptaiListComponent implements OnInit {
   constructor(private receptaiService:ReceptaiServiceService) { }
 
   private getReceptai(){
-    this.receptaiService.getReceptas().subscribe((response)=>{
+    this.receptaiService.getReceptai().subscribe((response)=>{
       this.receptai=response;
     });
-    // this.receptaiService.getMealsCount().subscribe((response)=>{
-    //   console.log('list', response);
-      
-    // })
   }
 
   ngOnInit(): void {

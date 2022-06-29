@@ -1,0 +1,11 @@
+<div class="card mb-3">
+    <img [src]="receptas?.nuotrauka" height="100px" width="100px" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ receptas?.pavadinimas }}</h5>
+        <p class="card-text">Recepto laikas: <b>{{ receptas?.rekomenduojamas_laikas }}</b></p>
+    </div>
+    <div class="card-footer">
+        <div><span class="text-muted">Patiktukų skaičius: </span><b>{{ receptas?.likes }}</b></div>
+        <button class="btn btn-success btn-sm" (click)="receptasDetails(receptas?.id)">Detalesnė informacija</button>
+    </div>
+</div>

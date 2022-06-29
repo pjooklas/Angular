@@ -7,19 +7,27 @@ import { AppComponent } from './app.component';
 import { NaujasReceptasComponent } from './components/naujas-receptas/naujas-receptas.component';
 import { ReceptaiListComponent } from './components/receptai-list/receptai-list.component';
 import { AddIngridientasComponent } from './components/add-ingridientas/add-ingridientas.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { ReceptaiItemComponent } from './components/receptai-list/receptai-item/receptai-item.component';
+import { ReceptasDetailsComponent } from './components/receptas-details/receptas-details.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NaujasReceptasComponent,
     ReceptaiListComponent,
-    AddIngridientasComponent
+    AddIngridientasComponent,
+    NavigationComponent,
+    ReceptaiItemComponent,
+    ReceptasDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

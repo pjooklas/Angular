@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { IngridientaiService } from 'src/app/services/ingridientai.service';
 import { ReceptaiServiceService } from 'src/app/services/receptai-service.service';
@@ -14,7 +15,11 @@ export class NaujasReceptasComponent implements OnInit {
   public receptoForma: FormGroup;
   public ingridientaiArr:{ingridientas:string}[]=[];
 
-  constructor(private receptaiService:ReceptaiServiceService, private ingridientaiService:IngridientaiService) { 
+  constructor(
+    private receptaiService:ReceptaiServiceService, 
+    private ingridientaiService:IngridientaiService,
+    private router:Router) 
+    { 
     this.receptoForma=new FormGroup({
       'rekomenduojamas_laikas':new FormControl(null, 
         [Validators.required]),
@@ -63,7 +68,7 @@ export class NaujasReceptasComponent implements OnInit {
 
   patiekimoLaikoValidatorius():AsyncValidatorFn{
     return (control:AbstractControl):Observable<ValidationErrors|null>=>{
-      return this.receptaiService.getReceptas().pipe( map((response)=>{
+      return this.receptaiService.getReceptai().pipe( map((response)=>{
           let exist=false;
           response.forEach((receptas)=>{
             if (receptas.pavadinimas==control.value && receptas.rekomenduojamas_laikas==this.receptoForma.get('rekomenduojamas_laikas')?.value){
@@ -111,6 +116,7 @@ export class NaujasReceptasComponent implements OnInit {
       matavimo_vnt:new FormControl(null, Validators.required)
     });
     (<FormArray> this.receptoForma.get('ingridientai')).push(ingridientas);
+
   }
 
   public pasalintiIngridienta(i:number){
@@ -127,6 +133,7 @@ export class NaujasReceptasComponent implements OnInit {
 
   public newReceptas(){
     this.receptaiService.addReceptas(this.receptoForma.value).subscribe();
+    this.router.navigate(['/']);
     // this.receptaiService.mealsCount(this.receptoForma.value.rekomenduojamas_laikas);
   }
 

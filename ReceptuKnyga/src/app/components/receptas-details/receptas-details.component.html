@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-header">Recepto informacija</div>
+    <div class="card-body">
+        <h5 class="card-title">Pavadinimas: <b>{{ receptas?.pavadinimas }}</b></h5>
+        <hr>
+        <p>Rekomenduojamas laikas: <b>{{ receptas?.rekomenduojamas_laikas }}</b></p>
+        <p>Gaminimo laikas: <b>{{ receptas?.gaminimo_laikas }}</b></p>
+        <p>Aprašymas: <b>{{ receptas?.aprasymas }}</b></p>
+        <p>Kalorijos: <b>{{ receptas?.kalorijos }}</b></p>
+        <p>Alergenai:
+            <span *ngFor="let alergenas of receptas?.alergenai">{{ alergenas }}</span>
+        </p>
+        <h5>Ingridientai:</h5>
+        <table class="table">
+            <thead>
+                <th>Miestas</th>
+                <th>Gatvė</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ingridientas of receptas?.ingridientai">
+                    <td>{{ ingridientas.produkto_pavadinimas }}</td>
+                    <td>{{ ingridientas.kiekis }}</td>
+                    <td>{{ ingridientas.matavimo_vnt }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="float-start"> <span class="text-muted">Patiktukų: <b>{{ receptas?.likes }}</b></span></div>
+        <button class="btn btn-success float-end btn-sm" (click)="pridetiLike(receptas?.id)">Like</button> 
+</div>

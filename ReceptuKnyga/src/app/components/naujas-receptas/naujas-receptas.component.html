@@ -52,12 +52,12 @@
 
             <div formArrayName="ingridientai">
                 <h4>Ingridientai</h4>
-                <div class="mb-3 row" *ngFor="let address of ingridientai(); let i=index" [formGroup]="abstractToFormGroup(address)">
+                <div class="mb-3 row" *ngFor="let ingridientas of ingridientai(); let i=index" [formGroup]="abstractToFormGroup(ingridientas)">
                         <div class="col-md-1 mb-3">
                             <input type="text" class="form-control-plaintext " [value]="i+1" readonly disabled style="text-align: right;">
                         </div>
                         <div class="col-md-7">
-                            <select class="form-control" formControlName="ingridientai">
+                            <select class="form-control" formControlName="produkto_pavadinimas">
                                 <option *ngFor="let ingridientas of ingridientaiArr">{{ ingridientas.ingridientas }}</option>
                            </select>
                         </div>

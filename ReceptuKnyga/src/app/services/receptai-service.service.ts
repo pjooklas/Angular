@@ -3,6 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Receptas } from '../models/receptas';
 import { map, tap } from 'rxjs/operators';
 import { MealsCount } from '../models/mealsCount';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +17,18 @@ export class ReceptaiServiceService {
   public priespieciai:number = 0;
   public pietus:number = 0;
   public vakariene:number = 0;
+  public receptai:Receptas[]=[];
 
 
   private readonly url='https://receptuknyga-491ea-default-rtdb.europe-west1.firebasedatabase.app/';
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    private router:Router
+    ) { }
 
   public addReceptas(receptas: Receptas){
-    this.getReceptas().subscribe((result)=> {
+    this.getReceptai().subscribe((result)=> {
       for (let meal of result) {
         switch (meal.rekomenduojamas_laikas) {
           case "pusryciai" : this.pusryciai++
@@ -60,17 +65,32 @@ export class ReceptaiServiceService {
     )
   }
 
-
-  public getReceptas(){
+  public getReceptai(){
     return this.http.get<{[key:string]:Receptas}>(this.url+"receptai.json").pipe(
       map((response)=>{
         let receptai:Receptas[]=[];
         for (let key in response){
           receptai.push({...response[key], id:key})
         }
+        this.receptai=receptai;
         return receptai;
       })
     )
+  }
+
+  public getReceptas(id:string):Receptas|null{
+    let result:Receptas|null=null;
+    this.receptai.forEach((receptas)=>{
+      if (receptas.id!=null && receptas.id==id) {
+        result=receptas;
+        console.log('pavyko');
+      }
+    });
+    if (result==null){
+      console.log('nepavyko', id);
+      this.router.navigate(["/"]);
+    }
+    return result;
   }
 
   public increaseLikes(id:string){
