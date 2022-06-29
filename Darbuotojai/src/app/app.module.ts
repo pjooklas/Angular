@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -9,12 +9,8 @@ import { EmployeListComponent } from './components/employe-list/employe-list.com
 import { AddCityComponent } from './components/add-city/add-city.component';
 import { EmployeItemComponent } from './components/employe-list/employe-item/employe-item.component';
 import { EmployeDetailsComponent } from './components/employe-details/employe-details.component';
-import { RouterModule, Routes } from '@angular/router';
-
-const routes:Routes=[
-  {path:'', component:EmployeListComponent},
-  {path:'employe/:id', component:EmployeDetailsComponent}
-]
+import { AppRoutingModule } from './app-routing.module';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +19,15 @@ const routes:Routes=[
     EmployeListComponent,
     AddCityComponent,
     EmployeItemComponent,
-    EmployeDetailsComponent
+    EmployeDetailsComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

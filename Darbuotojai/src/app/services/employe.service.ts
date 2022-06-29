@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Employe } from '../models/employe';
 import {map} from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ export class EmployeService {
   public onIncreaseCompletedWork=new EventEmitter();
   public employes:Employe[]=[];
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    private router:Router) { }
 
 
   public addEmploye(employe:Employe){
@@ -51,9 +54,12 @@ export class EmployeService {
     let result:Employe|null=null;
     this.employes.forEach((employe)=>{
       if (employe.id!=null && employe.id==id) {
-        result=employe
+        result=employe;
       }
     });
+    if (result==null){
+      this.router.navigate(["/"]);
+    }
     return result;
   }
 

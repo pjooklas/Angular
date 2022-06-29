@@ -12,13 +12,21 @@ export class EmployeDetailsComponent implements OnInit {
 
   public employe:Employe|null=null;
 
-  constructor(public employeService:EmployeService, private router:ActivatedRoute) { }
+  constructor(
+    public employeService:EmployeService, 
+    private route:ActivatedRoute,
+    private router:Router) { }
 
   ngOnInit(): void {
-    let id=this.router.snapshot.params['id'];
+    let id=this.route.snapshot.params['id'];
     this.employe=this.employeService.getEmployee(id);
   }
 
-
+  public increaseCompletedWorks(id?:string){
+    if (id!=null){
+      this.employeService.increaseCompletedWorks(id);
+      this.router.navigate(["/"]);
+    }
+  }
 
 }

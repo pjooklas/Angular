@@ -26,10 +26,10 @@ export class EmployeListComponent implements OnInit {
     });
   }
 
-  public increaseCompletedWorks(id?:string){
-    if (id!=null) {
-      this.employesService.increaseCompletedWorks(id);
-    }
-  }
+  // public increaseCompletedWorks(id?:string){
+  //   if (id!=null) {
+  //     this.employesService.increaseCompletedWorks(id);
+  //   }
+  // }
 
 }
