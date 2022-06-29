@@ -9,7 +9,7 @@ import { ReceptaiServiceService } from 'src/app/services/receptai-service.servic
 })
 export class ReceptaiListComponent implements OnInit {
 
-  public receptai:Receptas[]=[]; 
+  public receptai:Receptas[]=[];
 
   constructor(private receptaiService:ReceptaiServiceService) { }
 
@@ -17,6 +17,10 @@ export class ReceptaiListComponent implements OnInit {
     this.receptaiService.getReceptas().subscribe((response)=>{
       this.receptai=response;
     });
+    // this.receptaiService.getMealsCount().subscribe((response)=>{
+    //   console.log('list', response);
+      
+    // })
   }
 
   ngOnInit(): void {

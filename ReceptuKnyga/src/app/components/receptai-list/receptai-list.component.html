@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mb-3">
     <div class="card-header">Receptų sąrašas</div>
     <div class="card-body">
         <table class="table">
@@ -21,7 +21,7 @@
                     <td>{{ receptas.pavadinimas }}</td>
                     <td>{{ receptas.gaminimo_laikas }}</td>
                     <td>{{ receptas.aprasymas }}</td>
-                    <td>{{ receptas.nuotrauka }}</td>
+                    <td><img [src]="receptas.nuotrauka" height="100px" width="100px" /></td>
                     <td>{{ receptas.kalorijos }}</td>
                     <td>
                        <div *ngFor="let alergenas of receptas.alergenai">{{ alergenas }}</div> 
@@ -38,6 +38,29 @@
                         <button class="btn btn-success" (click)="increaseLikes(receptas.id)">Patinka</button>
                     </td>
                 </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">Patiekimo laikų lentelė</div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Pusryčiai</th>
+                    <th>Priešpiečiai</th>
+                    <th>Pietūs</th>
+                    <th>Vakarienė</th>
+                </tr>
+            </thead>
+            <tbody>
+               <td>
+               </td>
             </tbody>
         </table>
     </div>

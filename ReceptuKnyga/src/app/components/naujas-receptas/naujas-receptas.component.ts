@@ -127,8 +127,7 @@ export class NaujasReceptasComponent implements OnInit {
 
   public newReceptas(){
     this.receptaiService.addReceptas(this.receptoForma.value).subscribe();
+    // this.receptaiService.mealsCount(this.receptoForma.value.rekomenduojamas_laikas);
   }
-
-
 
 }
