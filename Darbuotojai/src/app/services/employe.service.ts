@@ -11,6 +11,7 @@ export class EmployeService {
   private readonly url='https://darbuotojai-da15a-default-rtdb.europe-west1.firebasedatabase.app/';
   
   public onIncreaseCompletedWork=new EventEmitter();
+  public employes:Employe[]=[];
 
   constructor(private http:HttpClient) { }
 
@@ -26,6 +27,7 @@ export class EmployeService {
         for (let key in response){
           employes.push({...response[key], id:key})
         }
+        this.employes=employes;
         return employes;
       })
     )
@@ -43,6 +45,16 @@ export class EmployeService {
         this.onIncreaseCompletedWork.emit();
       });
     })
+  }
+
+  public getEmployee(id:string):Employe|null{
+    let result:Employe|null=null;
+    this.employes.forEach((employe)=>{
+      if (employe.id!=null && employe.id==id) {
+        result=employe
+      }
+    });
+    return result;
   }
 
 }
