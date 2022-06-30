@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, Form, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { delay, map, Observable, of } from 'rxjs';
@@ -7,13 +8,47 @@ import { EmployeService } from 'src/app/services/employe.service';
 @Component({
   selector: 'app-employe-new',
   templateUrl: './employe-new.component.html',
-  styleUrls: ['./employe-new.component.css']
+  styleUrls: ['./employe-new.component.css'],
+  animations:[
+    trigger("blokelis",
+      [
+         state("pirma", style({
+          'background-color':'#ff0000',
+          transform:'translateX(-200px)',
+          height:'50px',
+          width:'50px',
+         })),
+         state("antra", style({
+           'background-color':'#00ff00',
+           transform:'translateX(100px)',
+           height:'100px',
+           width:'100px',
+         })),
+         transition('pirma=>antra',[
+            animate(1000, style({
+              transform:'translateX(100px)',
+              'background-color':'#00ff00',
+            })),
+            animate(1000)
+         ]),
+         transition('antra=>pirma',[
+            animate(1000, style({
+              height:'1000px',
+              width:'1000px',
+            })),
+            animate(500)
+         ])
+      ]
+    ),
+
+  ]
 })
 
 export class EmployeNewComponent implements OnInit {
 
   public employeForm: FormGroup;
   public cities:{city:string}[]=[];
+  public busena="pirma";
 
   constructor(private employeService:EmployeService, private citiesService:CitiesService) {
     this.employeForm=new FormGroup({
@@ -106,6 +141,12 @@ export class EmployeNewComponent implements OnInit {
     return <FormGroup>formGroup;
   }
 
-
+  public animuoti(){
+    if (this.busena=="pirma"){
+      this.busena="antra";
+    } else {
+      this. busena="pirma";
+    }
+  }
 
 }
