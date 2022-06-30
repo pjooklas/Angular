@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,12 +9,61 @@ import { ReceptaiServiceService } from 'src/app/services/receptai-service.servic
 @Component({
   selector: 'app-naujas-receptas',
   templateUrl: './naujas-receptas.component.html',
-  styleUrls: ['./naujas-receptas.component.css']
+  styleUrls: ['./naujas-receptas.component.css'],
+  animations:[
+    trigger("textAreaAnimation",
+    [
+      state("focused", style({
+        "height": "3rem",
+        "font-size": "1.5rem"
+      })),
+      state("notFocused", style({
+        "height": "1rem",
+        "font-size": "1rem"
+      })),
+      transition('notFocused=>focused',[
+        animate(200)
+     ]),
+      transition('focused=>notFocused',[
+        animate(200)
+     ]),
+    ]
+    ),
+
+    trigger("buttonAnimation",
+    [
+      state("valid", style({
+        "opacity": "1",
+      })),
+      state("invalid", style({
+        "opacity": "0",
+      })),
+      transition('invalid=>valid',[
+        animate(1000, style({
+          height:'1rem',
+          width:'auto',
+        })),
+        animate(1000)
+     ]),
+      transition('valid=>invalid',[
+        animate(1000, style({
+          height:'0px',
+          width:'0px',
+        })),
+        animate(1000)
+     ]),
+    ]
+    ),
+
+  ]
 })
+
 export class NaujasReceptasComponent implements OnInit {
 
   public receptoForma: FormGroup;
   public ingridientaiArr:{ingridientas:string}[]=[];
+  public focusStatus:string="notFocused";
+  public validForm='invalid';
 
   constructor(
     private receptaiService:ReceptaiServiceService, 
@@ -42,10 +92,20 @@ export class NaujasReceptasComponent implements OnInit {
       this.ingridientaiArr=result;
     })
   }
+
   ngOnInit(): void {
     this.getIngridientai();
     this.ingridientaiService.ingridientaiUpdated.subscribe(()=>{
       this.getIngridientai();
+    });
+    this.receptoForma.statusChanges.subscribe((response)=>{
+      console.log(response);
+      if (response=='VALID'){
+        this.validForm='valid';
+      } else {
+        this.validForm='invalid';
+      }
+      return this.validForm;
     })
   }
 
@@ -136,5 +196,14 @@ export class NaujasReceptasComponent implements OnInit {
     this.router.navigate(['/']);
     // this.receptaiService.mealsCount(this.receptoForma.value.rekomenduojamas_laikas);
   }
+
+  public onFocus(){
+      this. focusStatus="focused";
+  }
+
+  public onFocusOut(){
+      this.focusStatus="notFocused";
+  }
+
 
 }
