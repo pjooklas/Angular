@@ -39,16 +39,14 @@ import { ReceptaiServiceService } from 'src/app/services/receptai-service.servic
         "opacity": "0",
       })),
       transition('invalid=>valid',[
-        animate(1000, style({
-          height:'1rem',
-          width:'auto',
+        animate(100, style({
+          transform: "rotate(3600deg)"
         })),
         animate(1000)
      ]),
       transition('valid=>invalid',[
-        animate(1000, style({
-          height:'0px',
-          width:'0px',
+        animate(100, style({
+          transform: "rotate(-3600deg)"
         })),
         animate(1000)
      ]),
