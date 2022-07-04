@@ -12,6 +12,7 @@ export class EmployeListComponent implements OnInit {
   public employes:Employe[]=[]; 
   public employeesDisplay:Employe[]=[];
   public filterGender:number=0;
+  public pasirinktas=false;
 
   constructor(private employesService:EmployeService) { }
 
@@ -45,6 +46,10 @@ export class EmployeListComponent implements OnInit {
   // }
   public filter(){
     this.filterEmpoyees();
+  }
+  
+  public filter2(){
+    console.log(this.pasirinktas)
   }
 
 }

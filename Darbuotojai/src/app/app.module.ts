@@ -6,19 +6,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { EmployeNewComponent } from './components/employe-new/employe-new.component';
 import { EmployeListComponent } from './components/employe-list/employe-list.component';
-import { AddCityComponent } from './components/add-city/add-city.component';
+// import { AddCityComponent } from './components/add-city/add-city.component';
 import { EmployeItemComponent } from './components/employe-list/employe-item/employe-item.component';
 import { EmployeDetailsComponent } from './components/employe-details/employe-details.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AboutModule } from './about/about.module';
+import { CitiesModule } from './cities/cities.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeNewComponent,
     EmployeListComponent,
-    AddCityComponent,
+    // AddCityComponent,
     EmployeItemComponent,
     EmployeDetailsComponent,
     NavigationComponent
@@ -29,7 +31,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AboutModule,
+    CitiesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
