@@ -21,6 +21,9 @@ export class ReceptaiListComponent implements OnInit {
   private filterReceptai(){
     this.receptaiDisplay=[];
     this.receptai.forEach((receptas)=>{ 
+      if (this.filterPusryciai==false && this.filterPriespieciai==false && this.filterPietus==false && this.filterVakariene==false) {
+        this.receptaiDisplay.push(receptas);
+      };
       if (this.filterPusryciai==true && receptas.rekomenduojamas_laikas=="pusryciai") {
         this.receptaiDisplay.push(receptas);
       };
