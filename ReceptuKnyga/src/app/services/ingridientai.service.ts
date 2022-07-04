@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { map, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IngridientaiService {
 
-  private readonly url='https://receptuknyga-491ea-default-rtdb.europe-west1.firebasedatabase.app/';
+  private readonly url=environment.dbUrl;
 
   public ingridientaiUpdated=new EventEmitter();
 

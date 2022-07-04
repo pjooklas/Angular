@@ -12,7 +12,6 @@ import { ReceptaiItemComponent } from './components/receptai-list/receptai-item/
 import { ReceptasDetailsComponent } from './components/receptas-details/receptas-details.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { DocumentationModule } from './documentation/documentation.module';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import { DocumentationModule } from './documentation/documentation.module';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    DocumentationModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

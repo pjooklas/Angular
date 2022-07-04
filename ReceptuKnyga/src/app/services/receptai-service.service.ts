@@ -4,6 +4,7 @@ import { Receptas } from '../models/receptas';
 import { map, tap } from 'rxjs/operators';
 import { MealsCount } from '../models/mealsCount';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ReceptaiServiceService {
   public receptai:Receptas[]=[];
 
 
-  private readonly url='https://receptuknyga-491ea-default-rtdb.europe-west1.firebasedatabase.app/';
+  private readonly url=environment.dbUrl;
 
   constructor(
     private http:HttpClient,
