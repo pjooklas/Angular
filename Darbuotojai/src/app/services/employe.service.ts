@@ -3,13 +3,14 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Employe } from '../models/employe';
 import {map} from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeService {
   
-  private readonly url='https://darbuotojai-da15a-default-rtdb.europe-west1.firebasedatabase.app/';
+  private readonly url=environment.dbUrl;
   
   public onIncreaseCompletedWork=new EventEmitter();
   public employes:Employe[]=[];

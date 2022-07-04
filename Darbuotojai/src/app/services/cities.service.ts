@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { map, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CitiesService {
 
-  private readonly url='https://darbuotojai-da15a-default-rtdb.europe-west1.firebasedatabase.app/';
+  private readonly url=environment.dbUrl;
 
   public citiesUpdated=new EventEmitter();
 

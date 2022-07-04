@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 const routes:Routes=[
-  {path: 'about', component:AboutComponent}
+  {path: 'about', component:AboutComponent} //reikia 2x rasyti about/about
 ];
 
 @NgModule({

@@ -5,7 +5,7 @@ import { AddCityComponent } from '../components/add-city/add-city.component';
 import { FormsModule } from '@angular/forms';
 
 const routes:Routes=[
-  {path: 'cityAdd', component:AddCityComponent}
+  {path: 'add', component:AddCityComponent}
 ];
 
 @NgModule({
