@@ -1,0 +1,20 @@
+<h4>Inventorizacijos sąrašas</h4>
+<table border="1">
+    <tr>
+        <th>Numeris</th>
+        <th>Pavadinimas</th>
+        <th>Pradinė kaina</th>
+        <th>Įsigijimo data</th>
+        <th>Veiksmai</th>
+    </tr>
+    <tr *ngFor="let inventorizacija of inventorizacijos">
+        <td>{{ inventorizacija.numeris }}</td>
+        <td>{{ inventorizacija.pavadinimas }}</td>
+        <td>{{ inventorizacija.pradine_kaina }}</td>
+        <td>{{ inventorizacija.isigyjimo_data }}</td>
+        <td>
+            <a [routerLink]="['update', inventorizacija.id]">Redaguoti</a> &nbsp;&nbsp;
+            <a (click)="deleteInventorizacija(inventorizacija.id)" href="#">Ištrinti</a>
+        </td>
+    </tr>
+</table>
