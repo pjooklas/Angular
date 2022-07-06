@@ -11,6 +11,7 @@ import { EmployeDetailsComponent } from './components/employe-details/employe-de
 import { AppRoutingModule } from './app-routing.module';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SkaiciuokleComponent } from './components/skaiciuokle/skaiciuokle.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EmployeListComponent,
     EmployeItemComponent,
     EmployeDetailsComponent,
-    NavigationComponent
+    NavigationComponent,
+    SkaiciuokleComponent
   ],
   imports: [
     BrowserModule,
