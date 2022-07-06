@@ -1,0 +1,18 @@
+<h4>Padangų sąrašas</h4>
+<table border="1"> 
+    <tr>
+        <th>Markė</th>
+        <th>Diametras</th>
+        <th>Kiekis</th>
+        <th>Veiksmai</th>
+    </tr>
+    <tr *ngFor="let padanga of padangos">
+        <td>{{ padanga.mark }}</td>
+        <td>{{ padanga.diameter }}</td>
+        <td>{{ padanga.quantity }}</td>
+        <td>
+            <a [routerLink]="['update', padanga.id]">Redaguoti</a> &nbsp;&nbsp;
+            <a (click)="deletePadanga(padanga.id)" href="#">Ištrinti</a>
+        </td>
+    </tr>
+</table>
